@@ -1,0 +1,2 @@
+# Log module load
+source /pkg/suse12/eb_local/logger.tcl
