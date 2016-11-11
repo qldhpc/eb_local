@@ -4,6 +4,7 @@
 echo "Setting the EasyBuild environment..."
 export EASYBUILD_PREFIX=/pkg/suse12
 export EASYBUILD_CONFIGFILES=$EASYBUILD_PREFIX/eb_local/config.cfg
+umask 0002
 module use $EASYBUILD_PREFIX/modules/all
 echo "done."
 echo "Run 'module load EasyBuild' after this."
