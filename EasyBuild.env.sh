@@ -7,7 +7,7 @@ export EASYBUILD_CONFIGFILES=$EASYBUILD_PREFIX/eb_local/config.cfg
 umask 0002
 module use $EASYBUILD_PREFIX/modules/all
 echo "done."
-echo "Run 'module load EasyBuild' after this."
+echo "Run 'module load easybuild' after this."
 
 echo "NOTE: EasyBuild environment variables can be permanently set"
 echo "      in the EasyBuild/<version> module file by appending the lines:"
