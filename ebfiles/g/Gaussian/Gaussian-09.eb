@@ -1,0 +1,31 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'Tarball'
+name = 'Gaussian'
+version = '09'
+
+homepage = 'http://www.gaussian.com'
+description = """Starting from the fundamental laws of quantum mechanics, Gaussian 09 predicts the energies, molecular structures, vibrational frequencies and molecular properties of molecules and reactions in a wide variety of chemical environments. Gaussian 09’s models can be applied to both stable species and compounds which are difficult or impossible to observe experimentally (e.g., short-lived intermediates and transition structures)."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['E64-930X.tgz']
+
+sanity_check_paths = {
+    'files': ['g09'],
+    'dirs': [],
+}
+
+modextrapaths = {'PATH': ['', 'bsd'],
+		'LD_LIBRARY_PATH': ['', 'bsd'],
+		'GAUSS_EXEDIR': ['', 'bsd'],
+		'GAUSS_LEXEDIR': 'linda-exe',
+		'GAUSS_ARCHDIR': 'arch',
+		'GAUSS_BSDDIR': 'bsd',
+		'GDVBASIS': 'basis'}
+
+modextravars = { 'GAUSS_SCRDIR': '/app_scratch/Gaussian_09',
+		'PGI_TERM': 'trace,abort'}
+
+moduleclass = 'chem'
