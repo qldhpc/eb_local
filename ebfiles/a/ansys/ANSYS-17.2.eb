@@ -16,4 +16,4 @@ import os
 license_server = os.getenv('EB_ANSYS_LICENSE_SERVER', '')
 license_server_port = os.getenv('EB_ANSYS_LICENSE_SERVER_PORT', '')
 
-moduleclass = 'tools'
+moduleclass = 'cae'
