@@ -1,0 +1,30 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'Tarball'
+name = 'Novoalign'
+version = '3.06.02'
+
+homepage = 'http://www.novocraft.com/'
+description = """"""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['novocraftV%(version)s.Linux3.0.tar.gz']
+
+checksums = [
+	'c90866a92cfe33194fc58b9048ddf5af', # novocraftV3.06.02.Linux3.0.tar.gz
+]
+
+sanity_check_paths = {
+    'files': ['novobarcode', 'novoindex'],
+    'dirs': [],
+}
+
+modextrapaths = {'PATH': [''],
+		'LD_LIBRARY_PATH': ['']
+		}
+
+#modextravars = { }
+
+moduleclass = 'bio'
