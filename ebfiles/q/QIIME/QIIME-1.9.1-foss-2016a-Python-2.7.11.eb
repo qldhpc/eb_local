@@ -1,0 +1,28 @@
+easyblock = 'PythonPackage'
+
+name = 'QIIME'
+version = '1.9.1'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'http://qiime.org'
+description = """QIIME (canonically pronounced chime) stands for Quantitative Insights Into Microbial Ecology. QIIME is an open-source bioinformatics pipeline for performing microbiome analysis from raw DNA sequencing data. QIIME is designed to take users from raw sequencing data generated on the Illumina or other platforms through publication quality graphics and statistics. This includes demultiplexing and quality filtering, OTU picking, taxonomic assignment, and phylogenetic reconstruction, and diversity analyses and visualizations."""
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+#source_urls = ['https://pypi.python.org/pypi/qiime/1.9.1']
+source_urls = ['https://pypi.python.org/packages/a2/9e/094c330d85e6d519f643f6c6381a575df7a09f1f9bcd59bddbfbdd1a8506/']
+sources = ['qiime-1.9.1.tar.gz']
+
+use_pip = True
+
+dependencies = [
+    ('Python', '2.7.11'),
+    ('pip', '8.1.2', versionsuffix)
+]
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'bio'
