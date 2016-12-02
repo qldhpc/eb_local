@@ -82,8 +82,8 @@ class EB_XILINX(Binary):
     def sanity_check_step(self):
         """Custom sanity check for XILINX."""
         custom_paths = {
-           'files': [ "Vivado/%(self.version)s/bin/vivado", "Vivado_HLS/%(self.version)s/bin/vivado_hls"],
-           'dirs': ["Vivado/%(self.version)s/bin", "Vivado_HLS/%(self.version)s/bin/"],
+		'files': ["Vivado/%s/bin/vivado" %(self.version),"Vivado_HLS/%s/bin/vivado_hls"%(self.version)],
+		'dirs': ["Vivado","Vivado_HLS"],
         }
         super(EB_XILINX, self).sanity_check_step(custom_paths=custom_paths)   
       
