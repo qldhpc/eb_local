@@ -1,0 +1,28 @@
+easyblock = 'ConfigureMake'
+
+name = 'openkim'
+version = 'v1.7.3'
+
+homepage = 'https://github.com/openkim/kim-api'
+description = """The KIM API package is a system-level library that aims to give computer programmers the ability to write atomistic or molecular simulation programs
+that can seamlessly interface with implementations of interatomic models,
+regardless of the programming language (C, C++, FORTRAN 77, Fortran 90/95/2003,
+Python, etc.) in which the codes are written."""
+
+toolchain = {'name': 'intel', 'version': '2016b'}
+#toolchainopts = {'usempi': True}
+source_urls = ['https://s3.openkim.org/kim-api/']
+sources = ['kim-api-%(version)s.tgz']
+
+#configopts =' --quiet'
+#configopts +=' --build-verbosity=quiet'
+
+buildopts ='add-EAM_Dynamo_Angelo_Moody_NiAlH__MO_418978237058_001'
+buildopts+='; make'
+buildopts+='; make examples'
+
+#dependencies = [
+#    ('Perl', '5.22.1')
+#]
+
+moduleclass = 'phys'

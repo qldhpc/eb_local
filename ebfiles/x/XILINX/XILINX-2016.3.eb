@@ -1,0 +1,19 @@
+easyblock = 'EB_XILINX'
+
+name = 'Xilinx_Vivado_SDK'
+version = '2016.3'
+
+homepage = 'https://www.xilinx.com/'
+description = """The Vivado® Design Suite offers a new approach for ultra high productivity with next generation C/C++ and IP based design with the new HLx editions including HL System Edition, HL Design Edition and HL WebPACK™ Edition. The Vivado HLx Editions supply design teams with the tools and methodology needed to leverage C-based design and optimized reuse, IP sub-system reuse, integration automation and accelerated design closure. """
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['%s_%s_1011_1.tar.gz' % (name,version)]
+
+import os
+license_server = os.getenv('EB_XILINX_LICENSE_SERVER', '')
+license_server_port = os.getenv('EB_XILINX_LICENSE_SERVER_PORT', '')
+
+modextravars = {'XILINXD_LICENSE_FILE':'%(license_server_ports)s@%(license_server)s'}
+
+moduleclass = 'cae'
