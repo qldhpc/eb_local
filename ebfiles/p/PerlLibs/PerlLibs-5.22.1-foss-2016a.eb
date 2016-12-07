@@ -1,0 +1,37 @@
+easyblock = 'Bundle'
+
+name = 'PerlLibs'
+version = '%(perlver)s'
+
+homepage = 'https://metacpan.org'
+description = """Libraries for Larry Wall's Practical Extraction and Report Language"""
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+#toolchainopts = {'optarch': True, 'pic': True}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', '5.22.1'),
+]
+
+exts_list = [
+    ('Modern::Perl', '1.20150127', {
+        'source_tmpl': 'Modern-Perl-1.20150127.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/C/CH/CHROMATIC'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/site_perl/%(perlver)s'],
+}
+
+moduleclass = 'lang'
+
