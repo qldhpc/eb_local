@@ -1,5 +1,5 @@
 name = 'ABAQUS'
-version = '6.14'
+version = '6.14.2'
 versionsuffix = '-linux-x86_64'
 
 homepage = 'http://www.simulia.com/products/abaqus_fea.html'
@@ -13,4 +13,5 @@ builddependencies = [('Java', '1.7.0_60')]
 
 preinstallopts = "export CHECK_DISK_SPACE=OFF && "
 
+osdependencies = [('libXm4')]
 moduleclass = 'cae'
