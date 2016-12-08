@@ -1,0 +1,13 @@
+diff -rup a/opal/mca/hwloc/base/hwloc_base_util.c b/opal/mca/hwloc/base/hwloc_base_util.c
+--- a/opal/mca/hwloc/base/hwloc_base_util.c
++++ b/opal/mca/hwloc/base/hwloc_base_util.c
+@@ -513,7 +513,7 @@ static void df_search_cores(hwloc_obj_t
+             obj->userdata = (void*)data;
+         }
+         if (NULL == opal_hwloc_base_cpu_set) {
+-            if (!hwloc_bitmap_isincluded(obj->cpuset, obj->allowed_cpuset)) {
++            if (!hwloc_bitmap_intersects(obj->cpuset, obj->allowed_cpuset)) {
+                 /* do not count not allowed cores */
+                 return;
+             }
+
