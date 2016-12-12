@@ -1,0 +1,50 @@
+easyblock = 'Binary'
+
+name = 'signalp'
+version = '4.1'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://www.cbs.dtu.dk/services/SignalP/'
+description ="""SignalP predicts the presence  and  location of signal peptide  cleavage sites in  amino acid  sequences  from  different organisms:  Gram-positive bacteria, Gram-negative bacteria,  and eukaryotes.  The method incorporates a prediction of cleavage sites and  a signal peptide/non-signal peptide prediction based on a combination of several artificial neural networks. It is described in detail in the following articles - please cite:
+
+This version:
+
+SignalP 4.0: discriminating signal peptides from transmembrane regions. Thomas Nordahl Petersen, Soren Brunak, Gunnar von Heijne and Henrik Nielsen. Nature Methods, 8(10):785-786, 2011.
+
+Original paper:
+
+Identification of prokaryotic and eukaryotic signal peptides and prediction of their cleavage sites. Henrik Nielsen, Jacob Engelbrecht, Soren Brunak and Gunnar von Heijne. Protein Engineering, 10:1-6, 1997.
+
+More information about the method can be found at:
+
+        http://www.cbs.dtu.dk/services/SignalP/
+
+On May 11,  2012 the SignalP software was updated to version 4.1 which imposes a customizable minimum length on the predicted signal peptide (default 10). """
+
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?signalp']
+sources = [ndashv+'.Linux.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+
+dependencies = [
+    ('perl', '5.22.1'),
+    ('gnuplot','5.0.3'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': [ndashv+"/signalp", ndashv+"/bin/nnhowplayer.Linux_x86_64",],
+    'dirs': [ndashv+"/bin",ndashv+"/syn",ndashv+"/lib"]
+}
+
+
+modextrapaths = { 'PATH': [ndashv+'/bin', ndashv+'/lib',ndashv+'/syn',ndashv]}
+
+moduleclass = 'bio'

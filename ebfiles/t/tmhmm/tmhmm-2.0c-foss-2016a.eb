@@ -1,0 +1,34 @@
+easyblock = 'Binary'
+
+name = 'tmhmm'
+version = '2.0c'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://www.cbs.dtu.dk/services/TMHMM/'
+description ="""Prediction of transmembrane helices in proteins """ 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['http://www.cbs.dtu.dk/cgi-bin/nph-sw_request?tmhmm']
+sources = [ndashv+'.Linux.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+
+dependencies = [
+    ('perl', '5.22.1'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': [ndashv+"/bin/tmhmm", ndashv+"/bin/tmhmmformat.pl"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ndashv+'/bin', ndashv+'/lib']}
+
+moduleclass = 'bio'
