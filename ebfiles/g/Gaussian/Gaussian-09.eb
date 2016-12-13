@@ -26,6 +26,6 @@ modextrapaths = {'PATH': ['', 'bsd'],
 		'GDVBASIS': 'basis'}
 
 modextravars = { 'GAUSS_SCRDIR': '/app_scratch/Gaussian_09',
-		'PGI_TERM': 'trace,abort'}
+		'PGI_TERM': "trace,abort"}
 
 moduleclass = 'chem'
