@@ -22,6 +22,43 @@ exts_list = [
         'source_tmpl': 'Modern-Perl-1.20150127.tar.gz',
         'source_urls': ['https://cpan.metacpan.org/authors/id/C/CH/CHROMATIC'],
     }),
+    ('Pod::Usage', '1.69', {
+        'source_tmpl': 'Pod-Usage-1.69.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/M/MA/MAREKR'],
+    }),
+    ('Getopt::Long', '2.49.1', {
+        'source_tmpl': 'Getopt-Long-2.49.1.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/J/JV/JV'],
+    }),
+
+    ('Data::Dumper', '2.161', {
+        'source_tmpl': 'Data-Dumper-2.161.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/S/SM/SMUELLER'],
+    }),
+    ('Clone', '0.38', {
+        'source_tmpl': 'Clone-0.38.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/G/GA/GARU'],
+    }),
+    ('File::Slurp', '9999.19', {
+        'source_tmpl': 'File-Slurp-9999.19.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/U/UR/URI'],
+    }),
+    ('List::Util', '1.46', {
+        'source_tmpl': 'Scalar-List-Utils-1.46.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/P/PE/PEVANS'],
+    }),
+    ('DateTime', '1.41', {
+        'source_tmpl': 'DateTime-1.41.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/D/DR/DROLSKY'],
+    }),
+    ('DateTime::Format::DateParse', '0.05', {
+        'source_tmpl': 'DateTime-Format-DateParse-0.05.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/J/JH/JHOBLITT'],
+    }),
+    ('Syntax::Keyword::Junction', '0.003008', {
+        'source_tmpl': 'Syntax-Keyword-Junction-0.003008.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/F/FR/FREW'],
+    }),
 ]
 
 modextrapaths = {
