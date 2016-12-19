@@ -1,0 +1,44 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'CmdCp'
+name = 'ls-dyna'
+version = 'r612'
+
+homepage = 'http://www.lstc.com'
+description = """LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. The code's origins lie in highly nonlinear, transient dynamic finite element analysis using explicit time integration."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['ls-dyna_d_smp_R6_1_2_x64_redhat57_ifort101.gz',
+           'ls-dyna_s_smp_R6_1_2_x64_redhat57_ifort101.gz']
+
+cmds_map = [('ls-dyna.*', 'gunzip -k %(source)s')]
+
+modaliases = {'lsdyna_d': 'ls-dyna_d_smp_R6_1_2_x64_redhat57_ifort101',
+              'lsdyna_s': 'ls-dyna_s_smp_R6_1_2_x64_redhat57_ifort101'}
+
+keepsymlinks = True
+
+osdependencies = ['gzip']
+
+files_to_copy = ['ls-dyna_d_smp_R6_1_2_x64_redhat57_ifort101', 
+              'ls-dyna_s_smp_R6_1_2_x64_redhat57_ifort101']
+
+sanity_check_paths = {
+    'files': ['ls-dyna_d_smp_R6_1_2_x64_redhat57_ifort101', 
+              'ls-dyna_s_smp_R6_1_2_x64_redhat57_ifort101'],
+    'dirs': []
+}
+
+modextrapaths = {'PATH': ''}
+
+import os
+
+licserver = os.getenv('LSTC_LICENSE_SERVER', 'port@license.example.com')
+
+modextravars = { 'LSTC_LICENSE': 'network',
+		'LSTC_LICENSE_SERVER': licserver }
+
+
+moduleclass = 'cae'
