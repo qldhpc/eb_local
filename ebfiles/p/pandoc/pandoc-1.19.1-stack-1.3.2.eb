@@ -1,0 +1,49 @@
+easyblock = 'Binary'
+
+name = 'pandoc'
+version = '1.19.1'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://pandoc.org/index.html'
+description ="""If you need to convert files from one markup format into another, pandoc is your swiss-army knife. Pandoc can convert documents in markdown, reStructuredText, textile, HTML, DocBook, LaTeX, MediaWiki markup, TWiki markup, OPML, Emacs Org-Mode, Txt2Tags, Microsoft Word docx, LibreOffice ODT, EPUB, or Haddock markup to:
+
+*HTML formats: XHTML, HTML5, and HTML slide shows using Slidy, reveal.js, Slideous, S5, or DZSlides.
+*Word processor formats: Microsoft Word docx, OpenOffice/LibreOffice ODT, OpenDocument XML
+*Ebooks: EPUB version 2 or 3, FictionBook2
+*Documentation formats: DocBook, TEI Simple, GNU TexInfo, Groff man pages, Haddock markup
+*Page layout formats: InDesign ICML
+*Outline formats: OPML
+*TeX formats: LaTeX, ConTeXt, LaTeX Beamer slides
+*PDF via LaTeX
+*Lightweight markup formats: Markdown (including CommonMark), reStructuredText, AsciiDoc, MediaWiki markup, DokuWiki markup, Emacs Org-Mode, Textile
+*Custom formats: custom writers can be written in lua.""" 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['https://hackage.haskell.org/package/'+ndashv+'/']
+sources = [ndashv+'.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cd '+ ndashv
+install_cmd += '; stack setup'
+install_cmd += '; stack install --flag pandoc:embed_data_files' 
+install_cmd += ';cp .stack-work/install/x86_64-linux/lts-7.9/8.0.1/bin/pandoc %(installdir)s'
+
+
+
+dependencies = [
+    ('stack', '1.3.2'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': ['pandoc'],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [' ']}
+
+moduleclass = 'tools'

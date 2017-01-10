@@ -1,0 +1,35 @@
+easyblock = 'Binary'
+
+name = 'genopt'
+version = '3.1.0'
+
+v = '3-1-0'
+
+homepage = 'http://simulationresearch.lbl.gov/GO/index.html'
+description ="""GenOpt® is an optimization program for the minimization of a cost function that is evaluated by an external simulation program, such as EnergyPlus, TRNSYS, Dymola, IDA-ICE or DOE-2. It has been developed for optimization problems where the cost function is computationally expensive and its derivatives are not available or may not even exist. GenOpt can be coupled to any simulation program that reads its input from text files and writes its output to text files. The independent variables can be continuous variables (possibly with lower and upper bounds), discrete variables, or both. Constraints on dependent variables can be implemented using penalty or barrier functions.
+ """ 
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://github.com/lbl-srg/GenOpt/releases/download/v%(version)/']
+sources = ['%(name)s-install-%(v)s.jar']
+
+install_cmd = 'java -jar '+ sources[0]  
+install_cmd += '; cp  '+ ndashv+'-linux-x86_64-static/stack  %(installdir)s'
+
+
+dependencies = [
+    ('java', '1.8.0_92'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': ["stack"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ ]}
+
+moduleclass = 'tools'

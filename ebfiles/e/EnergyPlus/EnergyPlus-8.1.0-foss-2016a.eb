@@ -1,0 +1,34 @@
+easyblock = 'Binary'
+
+name = 'EnergyPlus'
+version = '8.1.0'
+v = '8-1-0'
+ndashv = name+'-'+v
+
+homepage = 'https://energyplus.net/'
+description = """EnergyPlus™ is a whole building energy simulation program that engineers, architects, and researchers use to model both energy consumption—for heating, cooling, ventilation, lighting and plug and process loads—and water use in buildings"""
+
+
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+sources = [ndashv+'.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+
+dependencies = [
+]
+
+
+sanity_check_paths = {
+    
+    'files': [ndashv+"/EnergyPlus"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ndashv]}
+
+moduleclass = 'cae'

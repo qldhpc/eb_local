@@ -1,0 +1,16 @@
+libopenssl-devel
+glu-devel
+libXt-devel
+libibverbs-devel
+libxml2-devel
+python-devel
+python3-devel
+python-setuptools
+git-core
+iotop
+tree
+libnuma-devel
+libXm4
+sqlite3-devel
+libmysqlclient-devel
+libjpeg62

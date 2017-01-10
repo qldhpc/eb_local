@@ -1,0 +1,38 @@
+easyblock = 'Binary'
+
+name = 'stack'
+version = '1.3.2'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'https://docs.haskellstack.org/en/stable/README/'
+description ="""Stack is a cross-platform program for developing Haskell projects. It is aimed at Haskellers both new and experienced. """ 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['http://github.com/commercialhaskell/stack/releases/download/v'+ version +'/']
+sources = [ndashv+'-linux-x86_64-static.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp  '+ ndashv+'-linux-x86_64-static/stack  %(installdir)s'
+
+
+dependencies = [
+    ('xz', '5.2.2'),
+    ('perl','5.22.1'),
+    ('gmp','6.1.1'),
+    ('libffi','3.2.1'),
+    ('zlib','1.2.8'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': ["stack"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ ]}
+
+moduleclass = 'tools'
