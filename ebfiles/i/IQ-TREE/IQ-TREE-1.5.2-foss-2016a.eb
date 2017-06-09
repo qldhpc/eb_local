@@ -1,0 +1,27 @@
+easyblock = 'Binary'
+
+name = 'IQ-Tree'
+version = '1.5.2'
+
+ndashv = 'iqtree-omp-%(version)s-Linux'
+
+homepage = 'http://www.iqtree.org/'
+description = """Fast and effective stochastic algorithm to reconstruct phylogenetic trees by maximum likelihood"""
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+source_urls = ['https://github.com/Cibiv/IQ-TREE/releases/download/v1.5.2/']
+sources = [ndashv+'.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+sanity_check_paths = {
+    
+    'files': [ndashv+"/bin/iqtree-omp"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ndashv+'/bin']}
+
+moduleclass = 'bio'

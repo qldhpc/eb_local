@@ -1,0 +1,39 @@
+easyblock = "Binary"
+
+name = 'magma'
+version = '2.22-9'
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://icl.cs.utk.edu/magma/'
+description = """The MAGMA project aims to develop a dense linear algebra library similar to 
+LAPACK but for heterogeneous/hybrid architectures, starting with current Multicore+GPU systems."""
+
+toolchain = {'name': 'intel', 'version': '2016b'}
+toolchainopts = {'pic': True}
+
+sources = ['magma.intel64.exe.gz','shared_complete.tar']
+#source_urls = ['http://icl.cs.utk.edu/projectsfiles/magma/downloads/']
+
+##patches = [('magma-2.0.0.patch')]
+
+##builddependencies = [ ('cuda/7.5.18', EXTERNAL_MODULE) ]
+
+#skipsteps = ['configure']
+
+#preinstallopts = "export EBINSTALLPREFIX=%(installdir)s && "
+
+install_cmd = 'gunzip -c'+ sources[0] +'>magma.exe' 
+install_cmd += '; tar -xf ' +sources[1]
+install_cmd += '; rm ' +sources[1]
+install_cmd += '; sed -i \'/ROOT=\".....\"/c\ROOT=%(installdir)s\' ./magma'
+install_cmd += '; cp -r ./ %(installdir)s'
+
+
+
+
+sanity_check_paths={
+    'files': ['magma'],
+    'dirs': [''],
+}
+
+moduleclass = 'math'

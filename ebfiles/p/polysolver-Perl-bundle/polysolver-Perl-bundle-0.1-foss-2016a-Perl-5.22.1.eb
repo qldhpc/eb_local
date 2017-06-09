@@ -1,0 +1,47 @@
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+# Modified by Adam Huffman
+# The Francis Crick Institute
+easyblock = 'Bundle'
+
+name = 'polysolver-Perl-bundle'
+version = '0.1'
+versionsuffix = '-Perl-%(perlver)s'
+
+homepage = 'http://archive.broadinstitute.org/cancer/cga/polysolver_run'
+description = """POLYSOLVER is a tool for HLA typing based on whole exome sequencing (WES) data and 
+ infers alleles for the three major MHC class I (HLA-A, -B, -C) genes.
+ This is a bundle of the additional Perl module requirements."""
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', '5.22.1'),
+]
+
+exts_list = [
+# Math::BaseCalc
+# List::Util
+# Parallel::ForkManager
+# POSIX
+# Dumpvalue
+    ('Math-BaseCalc', '1.017', {
+        'source_tmpl': 'Math-BaseCalc-1.017.tar.gz',
+        'source_utls': ['https://cpan.metacpan.org/authors/id/K/KW/KWILLIAMS/'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/perl5/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["."]
+}
+
+moduleclass = 'bio'
+

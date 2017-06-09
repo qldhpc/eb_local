@@ -1,0 +1,42 @@
+easyblock = 'Binary'
+
+name = 'Orthograph'
+version = '0.6.1'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'https://github.com/mptrsen/Orthograph'
+description ="""Orthology prediction using a graph-based, reciprocal approach with profile hidden Markov models
+""" 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['https://github.com/mptrsen/Orthograph/archive/']
+sources = [version+'.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+
+dependencies = [
+    ('perl', '5.22.1'),
+    ('sqlite', '3.9.2'),
+    ('mysql', '5.6.26','-clientonly'),
+    ('mafft','7.305','-with-extensions'),
+    ('blast+','2.3.0','-python-2.7.11'),
+    ('exonerate','2.4.0'),
+    ('hmmer','3.1b2'),
+	
+]
+
+
+sanity_check_paths = {
+    
+    'files': [ndashv+"/orthograph-analyzer"],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [ndashv]}
+
+moduleclass = 'bio'

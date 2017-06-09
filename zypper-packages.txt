@@ -14,3 +14,9 @@ libXm4
 sqlite3-devel
 libmysqlclient-devel
 libjpeg62
+lsb-release
+perl-JSON
+perl-Crypt-SSLeay
+libpng12-0
+lzo-devel
+iftop

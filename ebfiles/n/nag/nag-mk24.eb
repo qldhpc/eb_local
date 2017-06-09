@@ -1,0 +1,33 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'Tarball'
+name = 'nag'
+version = 'mk24'
+#versionsuffix = '-ifort'
+
+homepage = 'www.nag.com/'
+description = """Collection of numerical algorithms."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['fs24.tar', 'mk24_doc.tgz']
+
+sanity_check_paths = {
+    'files': ['fsl6i24dcl/lib/libnagsmp.so'],
+    'dirs': ['fsl6i24dcl/c_headers', 'fsl6i24dcl/nag_interface_blocks'],
+}
+
+#license_file = '/pkg/suse12/eb_local/licenses/nag/license.dat'
+
+start_dir = '../'
+
+#postinstallcmds = ['cp /pkg/suse12/eb_local/licenses/nag/license.dat .']
+
+modextrapaths = {'LD_LIBRARY_PATH': ['fsl6i24dcl/lib', 'fsl6i24dcl/mkl11.0/lib/intel64'],
+		'C_INCLUDE_PATH': 'fsl6i24dcl/c_headers',
+		'NAG_KUSARI_FILE': '../license.dat'}
+
+#modextravars = {}
+
+moduleclass = 'numlib'
