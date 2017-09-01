@@ -24,7 +24,7 @@ patches = [
 # link against MKL rather than blas/lapack
 preconfigopts = "env LDFLAGS='-lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread -lm'"
 configopts = "--with-external-blas=yes --with-external-lapack=yes"
-
+modextrapaths = {'CPATH': 'include/igraph'}
 sanity_check_paths = {
     'files': ['lib/libigraph.so', 'lib/libigraph.la', 'lib/pkgconfig/igraph.pc'] +
              ['include/igraph/%s' % x for x in ['igraph_version.h', 'igraph_types.h', 'igraph_constants.h']],
