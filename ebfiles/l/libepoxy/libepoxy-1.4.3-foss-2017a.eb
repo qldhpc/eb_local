@@ -1,0 +1,29 @@
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2017 Queensland University of Technology, Australia
+# Authors::   Desmond Schmidt <desmond.schmidt@qut.edu.au>
+# License::   MIT/GPL
+# $Id$
+##
+
+easyblock = 'ConfigureMake'
+
+name = 'libepoxy'
+version = '1.4.3'
+
+homepage = 'http://www.linuxfromscratch.org/blfs/view/cvs/x/libepoxy.html'
+description = """libepoxy is a library for handling OpenGL function pointer management."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['https://github.com/anholt/libepoxy/releases/download/%(version)s/']
+sources = [SOURCELOWER_TAR_XZ]
+dependencies = [('libpng', '1.6.29')]
+
+sanity_check_paths = {
+    'files': ['lib/libepoxy.la','lib/pkgconfig/epoxy.pc'],
+    'dirs': ['lib','include']
+}
+
+moduleclass = 'lib'

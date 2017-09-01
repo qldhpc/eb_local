@@ -1,0 +1,20 @@
+easyblock = 'ConfigureMake'
+
+name = 'libwx'
+version = '3.0.3'
+
+homepage = 'https://www.wxwidgets.org/'
+description = "wxWidgets is a C++ library that lets developers create applications for Windows, Mac OS X, Linux and other platforms."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['https://github.com/wxWidgets/wxWidgets/archive/']
+sources=['master.tar.gz']
+dependencies = [
+]
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib','bin']
+}
+moduleclass = 'lib'

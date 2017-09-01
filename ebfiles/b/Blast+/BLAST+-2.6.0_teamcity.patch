@@ -1,0 +1,13 @@
+--- ncbi-blast-2.6.0+-src/c++/src/corelib/teamcity_boost.cpp.orig
+2017-06-28 16:41:34.155461615 +1000
++++ ncbi-blast-2.6.0+-src/c++/src/corelib/teamcity_boost.cpp
+2017-06-28 16:08:27.819773248 +1000
+@@ -91,7 +91,7 @@
+         if (underTeamcity()) {
+             boost::unit_test::unit_test_log.set_formatter(new TeamcityBoostLogFormatter());
+             boost::unit_test::unit_test_log.set_threshold_level
+-                (RTCFG(but::log_level, LOG_LEVEL, log_level));
++                (RTCFG(but::log_level, btrt_log_level, log_level));
+         }
+     }
+ };

@@ -1,0 +1,22 @@
+easyblock = 'ConfigureMake'
+
+name = 'cups'
+version = '2.2.4'
+
+homepage = 'https://github.com/apple/cups/'
+description = "CUPS is a standards-based, open source printing system developed by Apple Inc. for macOS® and other UNIX®-like operating systems."
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['https://github.com/apple/cups/releases/download/v%(version)s/']
+sources = ['cups-%(version)s-source.tar.gz']
+
+dependencies = [
+]
+configopts = "--prefix=%(installdir)s --exec-prefix=%(installdir)s"
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["lib"],
+}
+
+moduleclass = 'lib'

@@ -14,11 +14,23 @@ source_urls = ['https://pypi.python.org/packages/a2/9e/094c330d85e6d519f643f6c63
 sources = ['qiime-1.9.1.tar.gz']
 
 use_pip = True
+exts_defaultclass = 'PythonPackage'
 
 dependencies = [
     ('Python', '2.7.11'),
-    ('pip', '8.1.2', versionsuffix)
+    ('pip', '8.1.2', versionsuffix),
+    ('matplotlib', '1.5.1',versionsuffix+'-freetype-2.6.3'),
+    ('h5py', '2.5.0', versionsuffix+'-hdf5-1.8.16'),
+    ('PyNAST', '1.2.2', versionsuffix)
 ]
+
+exts_list = [
+    ('gdata', '2.0.18', {
+        'source_urls': ['https://pypi.python.org/packages/a8/70/bd554151443fe9e89d9a934a7891aaffc63b9cb5c7d608972919a002c03c/'],
+    }),
+]
+
+
 
 sanity_check_paths = {
     'files': [],

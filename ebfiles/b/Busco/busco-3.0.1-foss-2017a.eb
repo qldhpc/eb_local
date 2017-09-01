@@ -1,0 +1,37 @@
+# easyconfig file for BUSCO 3.0.1
+easyblock = 'Tarball'
+name = 'Busco'
+version = '3.0.1'
+
+homepage = 'http://busco.ezlab.org/'
+description = """Assessing genome assembly and annotation completeness with Benchmarking Universal Single-Copy Orthologs (BUSCO)"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['https://gitlab.com/ezlab/busco/repository/']
+sources = ['archive.tar.gz']
+
+dependencies = [
+    ('augustus','3.2.3'),
+    ('Python', '3.6.1'),
+    ('blast+', '2.6.0'),
+    ('hmmer','3.1b2' ),
+    ('emboss','6.6.0'),
+]
+
+postinstallcmds = [
+    'python setup.py install',
+    'cp %(installdir)s/config/config.ini.default %(installdir)s/config/config.ini',
+    'sed -i -e "s:/home/osboxes/BUSCOVM/augustus/augustus-3.2.2:$(dirname $(dirname `which augustus`)):g" /pkg/suse12/software/busco/3.0.1-foss-2017a/config/config.ini',
+    'sed -i -e "s:/home/osboxes/BUSCOVM/hmmer/hmmer-3.1b2-linux-intel-ia32/binaries/:$(dirname `which hmmsearch`):g" /pkg/suse12/software/busco/3.0.1-foss-2017a/config/config.ini',
+    'sed -i -e "s:/usr/bin/:$(dirname `which tblastn`):g" /pkg/suse12/software/busco/3.0.1-foss-2017a/config/config.ini',
+]
+
+sanity_check_paths = {
+    'files': ['scripts/run_BUSCO.py'],
+    'dirs': ['config','src','scripts'],
+}
+#/pkg/suse12/software/busco/3.0.1-foss-2017a-python-3.6.1/config
+modextravars = { 'BUSCO_CONFIG_FILE': '%(installdir)s/config/config.ini' }
+modextrapaths = {'PATH':['scripts/']}
+moduleclass = 'bio'

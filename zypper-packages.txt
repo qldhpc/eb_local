@@ -20,3 +20,5 @@ perl-Crypt-SSLeay
 libpng12-0
 lzo-devel
 iftop
+python-keyring
+mozilla-nss

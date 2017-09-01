@@ -1,0 +1,15 @@
+easyblock = 'ConfigureMake'
+
+name = 'Zeromq'
+version = '4.2.1'
+
+homepage = 'http://zeromq.org/'
+description = """Zeromq an intelligent transport layer for distributed apps."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['https://github.com/zeromq/libzmq/releases/download/v%(version)s/']
+sources = ['%(namelower)s-%(version)s.tar.gz']
+
+moduleclass = 'lib'
+

@@ -1,0 +1,38 @@
+# Built with EasyBuild version 3.2.1
+# Author: Desmond Schmidt
+# Email: desmond.schmidt@qut.edu.au
+
+easyblock = 'Torch'
+name = 'torch'
+version = '7'
+
+homepage = 'http://torch.ch'
+description = """Torch is a scientific computing framework with wide support for machine learning algorithms that puts GPUs first."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+# source is a tar gzipped archive produced by:
+# git clone https://github.com/torch/distro.git ~/torch --recursive
+# tar czf torch.tar.gz torch
+# The .zip or .tar.gz archive downloaded directly off github is incomplete
+# so we have to manually refresh the source to get the latest version
+sources = ['torch.tar.gz']
+osdependencies = ['tar']
+
+dependencies = [
+    ('Python', '2.7.13', '-foss'),
+    ('ipython','5.1.0'),
+    ('zeromq','4.2.1'),
+    ('qt','4.8.7'),
+    ('lua','5.3.4'),
+]
+builddependencies = [
+    ('CMake', '3.7.2')
+]
+install_cmd = 'export PREFIX=%(installdir)s;./install.sh'
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['exe']
+}
+
+moduleclass = 'math'
+

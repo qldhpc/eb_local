@@ -1,0 +1,25 @@
+easyblock = 'ConfigureMake'
+
+name = 'GTK+'
+version = '2.24.31'
+
+homepage = 'https://www.gtk.org/'
+description = """
+ The GTK+ 3 package contains libraries used for creating graphical user interfaces for applications.
+"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [FTPGNOME_SOURCE]
+sources = [SOURCELOWER_TAR_XZ]
+
+dependencies = [
+    ('ATK', '2.25.2'),
+    ('Gdk-Pixbuf', '2.36.7'),
+    ('Pango', '1.40.7'),
+    ('GObject-Introspection', '1.49.1'),
+]
+
+configopts = "--disable-silent-rules --disable-glibtest --enable-introspection=yes --disable-cups "
+
+moduleclass = 'vis'

@@ -1,0 +1,36 @@
+easyblock = 'ConfigureMake'
+
+name = 'augustus'
+version = '3.2.3'
+
+homepage = 'http://bioinf.uni-greifswald.de/augustus/'
+description = """A program that predicts genes in eukaryotic genomic sequences."""
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+sources = [
+    'augustus-%(version)s.tar.gz',
+]
+source_urls = [
+    "http://bioinf.uni-greifswald.de/augustus/binaries/augustus-3.2.3.tar.gz",
+]
+patches = [
+    "augustus.patch",
+]
+skipsteps = ['configure']
+
+builddependencies = [('bamtools', '2.4.0')]
+
+installopts = "PREFIX=%(installdir)s"
+
+sanity_check_paths = {
+    'files': [ 'bin/aln2wig','bin/augustus','bin/bam2hints','bin/bam2wig',
+    'bin/etraining','bin/fastBlockSearch','bin/filterBam','bin/getSeq',
+    'bin/homGeneMapping','bin/joingenes','bin/load2sqlitedb','bin/prepareAlign',
+    ],
+    'dirs': ['bin'],
+}
+
+moduleclass = 'bio'
+
+

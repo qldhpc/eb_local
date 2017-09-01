@@ -1,0 +1,46 @@
+easyblock = 'ConfigureMake'
+
+name = 'PyGObject'
+version = '2.90.4'
+
+homepage = 'http://www.pygtk.org/'
+description = """Python Bindings for GLib/GObject/GIO/GTK+"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [FTPGNOME_SOURCE]
+sources = [SOURCELOWER_TAR_XZ]
+
+pyver = '2.7.13'
+pyshortver = '.'.join(pyver.split('.')[:2])
+
+glibver = '2.52.0'
+dependencies = [
+    ('Python', '2.7.13','-foss'),
+    ('GLib', glibver),
+    ('GObject-Introspection', '1.49.1'),
+    ('PyCairo', '1.10.0'),
+]
+
+modextrapaths = {
+    'PYTHONPATH': [
+        'lib/python%(pyshortver)s/site-packages',
+        'lib/python%(pyshortver)s/site-packages/gtk-2.0',
+        'lib64/python%(pyshortver)s/site-packages',
+        'lib64/python%(pyshortver)s/site-packages/gtk-2.0',
+    ],
+}
+
+sanity_check_paths = {
+    'files': ['include/pygobject-3.0/pygobject.h',
+         'lib/libpyglib-gi-2.0-python.so'],
+    'dirs': ['lib/python%(pyshortver)s/site-packages/'],
+}
+
+sanity_check_commands = [
+    ('python', "-c 'import gobject'"),
+    ('python', "-c 'import glib'"),
+    ('python', "-c 'import gio'"),
+]
+
+moduleclass = 'vis'

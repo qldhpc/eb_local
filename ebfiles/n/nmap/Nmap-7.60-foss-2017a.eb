@@ -1,0 +1,20 @@
+easyblock = 'ConfigureMake'
+
+name = 'nmap'
+version = '7.60'
+
+homepage = 'http://nmap.org/'
+description = """NMap is a utility for network discovery and security 
+  auditing. Many systems and network administrators also find it useful 
+  for tasks such as network inventory, managing service upgrade 
+  schedules, and monitoring host or service uptime."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+dependencies = [
+('python','2.7.13','-foss'),
+]
+sources = [SOURCELOWER_TAR_BZ2]
+source_urls = ['http://nmap.org/dist/']
+modextrapaths = {'PYTHONPATH':['lib/python2.7/site-packages/']}
+moduleclass = 'tools'
+

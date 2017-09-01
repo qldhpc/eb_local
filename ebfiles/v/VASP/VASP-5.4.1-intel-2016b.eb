@@ -21,12 +21,12 @@ patches = [
     'vasp.5.4.1.06112015.patch',
 ]
 
-checksums = [
-    '9a56174e272ac0c07645c42932848788',  # vasp.5.4.1.24Jun15.tar.gz
-    'ee242452bba6bb37459745f4617649d7',  # vasp.5.4.1.08072015.patch
-    'b137eb13804a60df382e77495dc738f9',  # vasp.5.4.1.27082015.patch
-    'd64b8f0ae861db7a76e6e9c9ffa188a1',  # vasp.5.4.1.06112015.patch
-]
+#checksums = [
+#    '9a56174e272ac0c07645c42932848788',  # vasp.5.4.1.24Jun15.tar.gz
+#    'ee242452bba6bb37459745f4617649d7',  # vasp.5.4.1.08072015.patch
+#    'b137eb13804a60df382e77495dc738f9',  # vasp.5.4.1.27082015.patch
+#    'd64b8f0ae861db7a76e6e9c9ffa188a1',  # vasp.5.4.1.06112015.patch
+#]
 
 prebuildopts = 'cp arch/makefile.include.linux_intel ./makefile.include && '
 

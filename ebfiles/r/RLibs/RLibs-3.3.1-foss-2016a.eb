@@ -59,6 +59,7 @@ exts_list = [
     ('RCurl', '1.95-4.5', ext_options),  # requires cURL
     ('XML', '3.98-1.1', ext_options),  # requires libxml2
     ('doBy', '4.5-15', ext_options),  # requires libxml2
+    ('EPGLM', '1.1.2', ext_options),  # requires libxml2
     # etc
 ]
 
