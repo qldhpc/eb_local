@@ -1,0 +1,31 @@
+name = 'PETSc'
+version = '3.7.6'
+
+homepage = 'http://www.mcs.anl.gov/petsc'
+description = """PETSc, pronounced PET-see (the S is silent), is a suite of data structures and routines for the
+ scalable (parallel) solution of scientific applications modeled by partial differential equations."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+toolchainopts = {'usempi': True, 'pic': True}
+
+source_urls = ['http://ftp.mcs.anl.gov/pub/petsc/release-snapshots']
+sources = [SOURCELOWER_TAR_GZ]
+
+patches = ['PETSc_ranlib-fix.patch']
+
+dependencies = [
+    ('Boost', '1.64.0'),
+    ('ScientificPython', '2.9.4'),
+    ('FIAT', '1.6.0'),
+    ('METIS', '5.1.0'),
+    ('parmetis', '4.0.3'),
+    ('SCOTCH', '6.0.4'),
+    ('SuiteSparse', '4.5.5'),
+    ('Hypre', '2.11.2'),
+]
+
+builddependencies = [('CMake', '3.7.2')]
+
+configopts = '--LIBS="$LIBS -lrt"'
+
+moduleclass = 'numlib'
