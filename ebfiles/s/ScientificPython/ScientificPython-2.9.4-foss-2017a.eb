@@ -2,7 +2,6 @@ easyblock = 'PythonPackage'
 
 name = 'ScientificPython'
 version = '2.9.4'
-versionsuffix = '-Python-%(pyver)s'
 
 homepage = 'https://sourcesup.cru.fr/projects/scientific-py/'
 description = """ScientificPython is a collection of Python modules for scientific computing.
@@ -18,7 +17,7 @@ dependencies = [
     ('Python', '2.7.13','-foss'),
     # older version of numpy than the one included in Python module required
     # cfr. https://bitbucket.org/khinsen/scientificpython/issue/13/numpy-19-has-dropped-support-for
-    ('numpy', '1.8.2', versionsuffix),
+    ('numpy', '1.8.2'),
 ]
 
 options = {'modulename': 'Scientific'}

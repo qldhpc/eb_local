@@ -1,6 +1,5 @@
 name = 'numpy'
 version = '1.8.2'
-versionsuffix = '-Python-%(pyver)s'
 
 homepage = 'http://www.numpy.org'
 description = """NumPy is the fundamental package for scientific computing with Python. It contains among other things:
