@@ -1,0 +1,27 @@
+--- configure.orig	2017-09-06 15:22:14.576335753 +1000
++++ configure	2017-09-06 17:00:23.831143880 +1000
+@@ -13,22 +13,10 @@
+ $install_name = "vmd";
+ 
+ # Directory where VMD startup script is installed, should be in users' paths.
+-$install_bin_dir="/usr/local/bin";
++$install_bin_dir=$ENV{INSTALL_BIN_DIR};
+ 
+ # Directory where VMD files and executables are installed
+-$install_library_dir="/usr/local/lib/$install_name";
+-
+-
+-# optionally override hard-coded defaults above with environment variables
+-if ($ENV{VMDINSTALLNAME}) {
+-  $install_name = $ENV{VMDINSTALLNAME}
+-}
+-if ($ENV{VMDINSTALLBINDIR}) {
+-  $install_bin_dir = $ENV{VMDINSTALLBINDIR}
+-}
+-if ($ENV{VMDINSTALLLIBRARYDIR}) {
+-  $install_library_dir = $ENV{VMDINSTALLLIBRARYDIR}
+-}
++$install_library_dir=$ENV{INSTALL_LIBRARY_DIR};
+ 
+ ##############################################################################
+ # You shouldn't normally need to modify anything below this point, though some
