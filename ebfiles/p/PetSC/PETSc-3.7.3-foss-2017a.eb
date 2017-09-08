@@ -12,12 +12,11 @@ source_urls = ['http://ftp.mcs.anl.gov/pub/petsc/release-snapshots']
 sources = [SOURCELOWER_TAR_GZ]
 
 patches = ['PETSc_ranlib-fix.patch']
-
+configopts = '-DPETSC_EXECUTABLE_RUNS=ON'
 dependencies = [
     ('Boost', '1.64.0'),
     ('ScientificPython', '2.9.4'),
     ('FIAT', '1.6.0'),
-    ('METIS', '5.1.0'),
     ('parmetis', '4.0.3'),
     ('SCOTCH', '6.0.4'),
     ('SuiteSparse', '4.5.5'),
