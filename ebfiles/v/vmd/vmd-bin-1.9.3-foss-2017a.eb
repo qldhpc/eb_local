@@ -1,0 +1,29 @@
+easyblock = 'Binary'
+
+name = 'vmd'
+version = '1.9.3'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://www.ks.uiuc.edu/Research/vmd/'
+description =""" VMD is a molecular visualization program for displaying, animating, and analyzing large biomolecular systems using 3-D graphics and built-in scripting.  """ 
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# download requires registration so we download manually and put it in sources dir
+# we also require the configure patch which the install_cmd below uses
+# so that has to be copied into the sources directory also
+# source_urls = ['http://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD']
+sources = [ndashv+'.bin.tar.gz','vmd-configure.patch']
+
+# according to the install guid for Linux these steps are required after binary install:
+install_cmd = 'tar -xvf '+ sources[0] + ';mv vmd-configure.patch '+ndashv  
+install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+install_cmd += '; cd '+ndashv+';patch configure vmd-configure.patch'
+install_cmd += '; export INSTALL_BIN_DIR=%(installdir)s/bin; export INSTALL_LIBRARY_DIR=%(installdir)s/'
+install_cmd += '; ./configure LINUXAMD64 ; cd src; make install' 
+
+sanity_check_paths = {
+    'files': [ndashv+"/bin/vmd.sh", ndashv+"/lib/scripts/tk8.5/tk.tcl"],
+    'dirs': []
+}

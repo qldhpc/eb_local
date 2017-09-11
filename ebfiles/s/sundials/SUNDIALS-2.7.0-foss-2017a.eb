@@ -17,7 +17,7 @@ builddependencies = [('CMake', '3.7.2')]
 separate_build_dir = True
 
 configopts = "-DMPI_ENABLE=ON -DOPENMP_ENABLE=ON -DLAPACK_ENABLE=ON"
-
+modextravars = {'SUNDIALS_ROOT':'%(installdir)s'}
 solvers = ['arkode', 'cvode', 'cvodes', 'ida', 'idas', 'kinsol']
 sanity_check_paths = {
     'files': ['lib/libsundials_%s.a' % s for s in solvers + ['nvecopenmp', 'nvecparallel', 'nvecserial']] +
