@@ -31,7 +31,11 @@ dependencies = [
 
 builddependencies = [('CMake', '3.7.2')]
 # the easyblock doesn't copy this vital directory
+modextravars = {'PETSC_DIR':'%(installdir)s', 'PETSC_ARCH':'arch-linux2-c-opt'}
 postinstallcmds = ['cp -r %(builddir)s/%(namelower)s-%(version)s/'+petsc_arch+' %(installdir)s'];
 configopts = '--LIBS="$LIBS -lrt"'
-
+sanity_check_paths = {
+    'files': ['lib/libpetsc.a'],
+    'dirs': ['lib','arch-linux2-c-opt'],
+}
 moduleclass = 'numlib'

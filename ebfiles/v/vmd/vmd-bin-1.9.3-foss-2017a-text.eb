@@ -2,7 +2,7 @@ easyblock = 'Binary'
 
 name = 'vmd'
 version = '1.9.3'
-
+versionsuffix = '-text'
 ndashv = '%(name)s-%(version)s'
 
 homepage = 'http://www.ks.uiuc.edu/Research/vmd/'
@@ -14,15 +14,17 @@ toolchain = {'name': 'foss', 'version': '2017a'}
 # we also require the configure patch which the install_cmd below uses
 # so that has to be copied into the sources directory also
 # source_urls = ['http://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD']
-sources = [ndashv+'.bin.tar.gz','vmd-configure.patch']
+# also NB since the source code compliation is hard we use the binary distribution BUT
+# you must have the correct binary. The only one that will run currently on Lyra is the 
+# sse text-only 64 bit version. All other versions will give strange errors.
+sources = [ndashv+'.bin.LINUXAMD64.text.tar.gz','vmd-1.9.3-configure.patch']
 
-# according to the install guid for Linux these steps are required after binary install:
-install_cmd = 'tar -xvf '+ sources[0] + ';mv vmd-configure.patch '+ndashv  
+# according to the install guide for Linux these steps are required after binary install:
+install_cmd = 'tar -xvf '+ sources[0] + ';mv vmd-1.9.3-configure.patch '+ndashv  
 install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
-install_cmd += '; cd '+ndashv+';patch configure vmd-configure.patch'
-install_cmd += '; export INSTALL_BIN_DIR=%(installdir)s/bin; export INSTALL_LIBRARY_DIR=%(installdir)s/'
+install_cmd += '; cd '+ndashv+';patch -p1 configure vmd-1.9.3-configure.patch'
+install_cmd += '; export INSTALL_BIN_DIR=%(installdir)s/bin; export INSTALL_LIBRARY_DIR=%(installdir)s/lib'
 install_cmd += '; ./configure LINUXAMD64 ; cd src; make install' 
-
 sanity_check_paths = {
     'files': [ndashv+"/bin/vmd.sh", ndashv+"/lib/scripts/tk8.5/tk.tcl"],
     'dirs': []

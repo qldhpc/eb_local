@@ -22,3 +22,4 @@ lzo-devel
 iftop
 python-keyring
 mozilla-nss
+tigervnc
