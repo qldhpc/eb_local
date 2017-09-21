@@ -1,0 +1,11 @@
+easyblock = 'CMakeMake'
+
+name = 'tetgen'
+version = '1.5.0'
+homepage = 'http://wias-berlin.de/software/tetgen/'
+description = "A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator"
+toolchain = {'name': 'foss', 'version': '2017a'}
+patches = [('makefile.patch',1)]
+sources = ['tetgen%(version)s.tar.gz']
+builddependencies = [('CMake', '3.7.2')]
+moduleclass = 'cae'
