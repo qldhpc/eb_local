@@ -6,7 +6,8 @@ homepage = 'http://wias-berlin.de/software/tetgen/'
 description = "A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator"
 toolchain = {'name': 'foss', 'version': '2017a'}
 
-# NB regenerate patch - makefile has no all or install targets!!
+# NB MUST regenerate patch - makefile has no all or install targets!!
+# paths in patch are local to your installation!!
 patches = [('makefile.patch',1)]
 
 # download requires registration so use a ready-made copy
