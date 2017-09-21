@@ -61,8 +61,11 @@ predicates.o: predicates.cxx
 clean:
 	$(RM) *.o *.a tetgen *~
 
-install:
-        mkdir -p /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/bin
-        mkdir -p /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/lib
-        cp libtet.a /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/lib
-        cp tetgen /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin
+
+.PHONY: install
+install: 
+	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin 
+	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib 
+	install -m 557 tetgen /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin/ 
+	install -m 557 libtet.a /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib/ 
+

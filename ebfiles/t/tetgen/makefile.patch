@@ -1,6 +1,6 @@
 diff -Naur old/makefile new/makefile
 --- old/makefile	2017-09-21 14:15:33.140400609 +1000
-+++ new/makefile	2017-09-21 15:16:22.393057168 +1000
++++ new/makefile	2017-09-21 17:13:49.900410775 +1000
 @@ -43,6 +43,10 @@
  RM = /bin/rm
  
@@ -12,15 +12,15 @@ diff -Naur old/makefile new/makefile
  
  tetgen:	tetgen.cxx predicates.o
  	$(CXX) $(CXXFLAGS) $(SWITCHES) -o tetgen tetgen.cxx predicates.o -lm
-@@ -57,6 +61,8 @@
- clean:
+@@ -58,5 +62,10 @@
  	$(RM) *.o *.a tetgen *~
  
+ 
 -
--
--
-+install:
-+        mkdir -p /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/bin
-+        mkdir -p /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/lib
-+        cp libtet.a /pkg/suse12/sources/tetgen/1.5.0-foss-2017a/lib
-+        cp tetgen /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin
++.PHONY: install
++install: 
++	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin 
++	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib 
++	install -m 557 tetgen /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin/ 
++	install -m 557 libtet.a /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib/ 
+ 
