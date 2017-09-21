@@ -11,9 +11,11 @@ cat <<InstallTarget >> new/makefile
 .PHONY: install
 install: 
 	mkdir -p $fullpath/bin 
+	mkdir -p $fullpath/include 
 	mkdir -p $fullpath/lib 
 	install -m 557 tetgen $fullpath/bin/ 
 	install -m 557 libtet.a $fullpath/lib/ 
+	install -m 557 tetgen.h $fullpath/include/ 
 
 InstallTarget
 diff -Naur old new > makefile.patch

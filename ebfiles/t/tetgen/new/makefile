@@ -65,7 +65,9 @@ clean:
 .PHONY: install
 install: 
 	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin 
+	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/include 
 	mkdir -p /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib 
 	install -m 557 tetgen /pkg/suse12/software/tetgen/1.5.0-foss-2017a/bin/ 
 	install -m 557 libtet.a /pkg/suse12/software/tetgen/1.5.0-foss-2017a/lib/ 
+	install -m 557 tetgen.h /pkg/suse12/software/tetgen/1.5.0-foss-2017a/include/ 
 

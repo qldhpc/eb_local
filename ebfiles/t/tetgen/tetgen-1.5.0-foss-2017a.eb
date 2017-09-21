@@ -13,7 +13,7 @@ patches = [('makefile.patch',1)]
 sources = ['tetgen%(version)s.tar.gz']
 builddependencies = [('CMake', '3.7.2')]
 sanity_check_paths = {
-'dirs':['bin','lib'],
+'dirs':['bin','lib','include'],
 'files':[]
 }
 moduleclass = 'cae'
