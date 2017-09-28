@@ -889,6 +889,11 @@ exts_list = [
         'source_tmpl': 'MailTools-2.18.tar.gz',
         'source_urls': ['https://cpan.metacpan.org/authors/id/M/MA/MARKOV'],
     }),
+    ('local::lib', '2.000023', {
+        'source_tmpl': 'local-lib-2.000023.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/H/HA/HAARG'],
+    }),
+    
 ]
 
 moduleclass = 'lang'

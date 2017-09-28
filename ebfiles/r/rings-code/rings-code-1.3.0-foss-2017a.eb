@@ -1,0 +1,18 @@
+easyblock = 'ConfigureMake'
+
+name = 'rings-code'
+version = '1.3.0'
+
+homepage = 'http://www.gnu.org/software/gettext/'
+description = """"Rigorous Investigation of Networks Generated using 
+Simulations" is a scientific code developed in Fortran90/MPI to analyze 
+the results of molecular dynamics simulations."""
+buildopts = '-j 1'
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+sources = ["rings-code-v%(version)s.tar.bz2"]
+sanity_check_paths = {
+    'files': ['bin/rings'],
+    'dirs': ['bin','doc'],
+}
+moduleclass = 'cae'
