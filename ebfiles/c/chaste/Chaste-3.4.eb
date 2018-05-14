@@ -1,0 +1,34 @@
+easyblock = 'EB_Chaste'
+name = 'Chaste'
+version = '3.4'
+vtk_version = '6.2.0'
+petsc_version = '3.7.2'
+mpich_version = '3.2'
+hdf5_version = '1.8.16'
+xerces_version = '3.2.0'
+xsd_version = '4.0.0'
+sundials_version = '2.5.0'
+import os
+# must be executed from the dir holding this file
+patch_dir = os.getcwd()
+
+homepage = 'http://www.cs.ox.ac.uk/chaste/'
+description = """Chaste (Cancer, Heart and Soft Tissue Environment) is a general 
+purpose simulation package aimed at multi-scale, computationally demanding problems 
+arising in biology and physiology. Current functionality includes tissue and 
+cell level electrophysiology, discrete tissue modelling, and soft tissue modelling."""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+# use downloaded svn repository NOT release (doesn't work)
+source_urls = ['https://github.com/Chaste/Chaste/archive/']
+sources = ['master.tar.gz']
+builddependencies = [
+    ('CMake', '3.7.2','',('foss','2017a')),
+    ('Python','2.7.5','',('foss','2017a')),
+    ('foss','2017a'),
+]
+dependencies = [
+]
+
+moduleclass = 'vis'

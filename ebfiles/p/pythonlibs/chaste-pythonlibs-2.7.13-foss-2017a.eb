@@ -1,0 +1,41 @@
+easyblock = 'Bundle' 
+
+name = 'chaste-pythonlibs'
+version = '2.7.5'
+
+homepage = 'http://python.org/'
+description = """Python is a programming language that lets you work more quickly and integrate your systems
+ more effectively."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+#source_urls = ['http://www.python.org/ftp/%(namelower)s/%(version)s/']
+#sources = [SOURCE_TGZ]
+
+# this is a bundle of Python packages
+exts_defaultclass = 'PythonPackage'
+
+dependencies = [
+    ('Python','2.7.5'),
+]
+
+
+# order is important!
+# package versions updated May 28th 2015
+exts_list = [
+    ('amara', '2.0.0', {
+        'source_urls': ['https://pypi.python.org/packages/4e/a7/586ed07e89d80c34c2aff98b5ccc1a6b7d58e4fd9f871f471ae7f4847b85/'],
+        'source_tmpl': 'Amara-%(version)s.tar.gz',
+    }),
+    ('4Suite-XML', '1.0.2', {
+        'source_urls': ['https://pypi.python.org/packages/9a/5c/4ad2ee5f12028e0b40f3f6487cbdfe977ca8c112ecd88c175bc20de189fd/'],
+        'source_tmpl': '4Suite-XML-1.0.2.tar.bz2',
+    }),
+]
+
+sanity_check_paths = {
+    'files':[],
+    'dirs': ['lib'],
+}
+
+moduleclass = 'lang'

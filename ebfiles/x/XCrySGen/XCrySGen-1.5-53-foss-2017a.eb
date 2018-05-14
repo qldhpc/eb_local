@@ -1,0 +1,27 @@
+name = 'XCrySDen'
+version = '1.5.53'
+
+homepage = "http://www.xcrysden.org/"
+description = """XCrySDen is a crystalline and molecular structure 
+visualisation program aiming
+at display of isosurfaces and contours, which can be superimposed on 
+crystalline structures and
+interactively rotated and manipulated."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ["http://www.xcrysden.org/download/"]
+sources = [SOURCELOWER_TAR_GZ]
+
+patches = ['XCrySDen_no-bwidget.patch']
+
+tcltk_ver = '8.5.19'
+dependencies = [
+    ('tcl', tcltk_ver),
+    ('tk', tcltk_ver),
+    ('mesa', '17.1.5'),
+    ('x11', '20170129'),
+    ('libx11','1.6.3'),
+]
+
+moduleclass = 'vis'

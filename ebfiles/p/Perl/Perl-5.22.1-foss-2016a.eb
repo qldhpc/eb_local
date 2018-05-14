@@ -880,6 +880,10 @@ exts_list = [
         'source_tmpl': 'MailTools-2.14.tar.gz',
         'source_urls': ['https://cpan.metacpan.org/authors/id/M/MA/MARKOV'],
     }),
+    ('DB_File', '1.840', {
+        'source_tmpl': 'DB_File-1.840.tar.gz',
+        'source_urls': ['https://cpan.metacpan.org/authors/id/P/PM/PMQS'],
+    }),
 ]
 
 moduleclass = 'lang'

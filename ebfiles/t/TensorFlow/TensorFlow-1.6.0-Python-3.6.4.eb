@@ -1,0 +1,27 @@
+easyblock = 'PythonPackage'
+
+name = 'TensorFlow'
+version = '1.6.0rc1'
+
+homepage = 'http://www.tensorflow.org/'
+description = """TensorFlow is an open source software library for numerical computation using data flow graphs."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+sources = ['tensorflow-1.6.0rc1-cp36-cp36m-manylinux1_x86_64.whl']
+
+unpack_sources = False
+use_pip = True
+
+dependencies = [
+    ('Python', '3.6.4'),
+    ('protobuf-python', '3.5.1', '-python-3.6.4')
+]
+
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'math'

@@ -1,0 +1,20 @@
+easyblock = 'ConfigureMake'
+
+name = 'tetgen'
+version = '1.4.3'
+homepage = 'http://wias-berlin.de/software/tetgen/'
+description = "A Quality Tetrahedral Mesh Generator and a 3D Delaunay Triangulator"
+toolchain = {'name': 'foss', 'version': '2017a'}
+skipsteps = ['configure']
+# NB MUST regenerate patch - makefile has no all or install targets!!
+# paths in patch are local to your installation!!
+patches = [('makefile-1.4.3.patch',1)]
+
+# download requires registration so use a ready-made copy
+sources = ['tetgen%(version)s.tar.gz']
+builddependencies = [('CMake', '3.7.2')]
+sanity_check_paths = {
+'dirs':['bin','lib','include'],
+'files':[]
+}
+moduleclass = 'cae'

@@ -1,0 +1,42 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'CmdCp'
+name = 'ls-dyna'
+version = 'r10mpp'
+
+homepage = 'http://www.lstc.com'
+description = """LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. The code's origins lie in highly nonlinear, transient dynamic finite element analysis using explicit time integration."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['ls-dyna_mpp_s_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7.tar.gz',
+           'ls-dyna_mpp_d_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7.tar.gz']
+
+cmds_map = [('ls-dyna_mpp*', 'gunzip -k %(source)s')]
+
+modaliases = {'lsdyna_s': 'ls-dyna_mpp_s_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7',
+              'lsdyna_d': 'ls-dyna_mpp_d_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7'}
+
+keepsymlinks = True
+
+osdependencies = ['gzip']
+
+files_to_copy = ['ls-dyna_mpp_s_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7',
+                 'ls-dyna_mpp_d_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7'] 
+
+sanity_check_paths = {
+    'files': ['ls-dyna_mpp_s_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7',
+              'ls-dyna_mpp_d_r10_0_118302_x64_redhat54_ifort160_avx2_openmpi1.10.7'], 
+    
+    'dirs': []
+}
+
+modextrapaths = {'PATH': ''}
+
+import os
+
+licserver = os.getenv('LSTC_LICENSE_SERVER', 'port@license.example.com')
+
+modextravars = { 'LSTC_LICENSE': 'network',
+		'LSTC_LICENSE_SERVER': licserver }

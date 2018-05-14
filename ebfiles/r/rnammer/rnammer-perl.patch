@@ -1,0 +1,67 @@
+diff -Naur old/core-rnammer new/core-rnammer
+--- old/core-rnammer	2018-03-26 12:06:20.365879121 +1000
++++ new/core-rnammer	2018-03-26 12:05:07.404664964 +1000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/usr/bin/env perl
+ use Data::Dumper;
+ # VERSION 1.2
+ my $version = '1.2-core';
+diff -Naur old/rnammer new/rnammer
+--- old/rnammer	2018-03-26 12:06:14.073774419 +1000
++++ new/rnammer	2018-03-26 12:03:00.826558228 +1000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/usr/bin/env perl
+ # VERSION 1.2
+ my $version = '1.2';
+ # 1.1b: config parameter 'multi' introduced to allow parallel execution
+@@ -32,7 +32,7 @@
+ ## PROGRAM CONFIGURATION BEGIN
+ 
+ # the path of the program
+-my $INSTALL_PATH = "/usr/cbs/bio/src/rnammer-1.2";
++my $INSTALL_PATH = $ENV{'EBROOTRNAMMER'};
+ 
+ # The library in which HMMs can be found
+ my $HMM_LIBRARY = "$INSTALL_PATH/lib";
+@@ -40,17 +40,17 @@
+ my $XML2FSA = "$INSTALL_PATH/xml2fsa";
+ 
+ # The location of the RNAmmer core module
+-my $RNAMMER_CORE     = "$INSTALL_PATH/core-rnammer";
++my $RNAMMER_CORE     = "core-rnammer";
+ 
+ # path to hmmsearch of HMMER package
+ chomp ( my $uname = `uname`);
+ my $HMMSEARCH_BINARY;
+ my $PERL;
+ if ( $uname eq "Linux" ) {
+-	$HMMSEARCH_BINARY = "/usr/cbs/bio/bin/linux64/hmmsearch";
+-	$PERL = "/usr/bin/perl";
++	$HMMSEARCH_BINARY = "hmmsearch";
++	$PERL = "/usr/bin/env perl";
+ } elsif ( $uname eq "IRIX64" ) {
+-	$HMMSEARCH_BINARY = "/usr/cbs/bio/bin/irix64/hmmsearch";
++	$HMMSEARCH_BINARY = "hmmsearch";
+ 	$PERL = "/usr/sbin/perl";
+ } else {
+ 	die "unknown platform\n";
+diff -Naur old/xml2fsa new/xml2fsa
+--- old/xml2fsa	2018-03-26 12:06:29.654033676 +1000
++++ new/xml2fsa	2018-03-26 12:03:27.915009118 +1000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/usr/bin/env perl
+ # Peter Hallin 2007-02-06, to be used with RNAmmer v1.2
+ 
+ use XML::Simple;
+diff -Naur old/xml2gff new/xml2gff
+--- old/xml2gff	2018-03-26 12:06:29.654033676 +1000
++++ new/xml2gff	2018-03-26 12:04:39.908207356 +1000
+@@ -1,4 +1,4 @@
+-#!/usr/bin/perl
++#!/usr/bin/env perl
+ # Peter Hallin 2007-02-06, to be used with RNAmmer v1.2
+ 
+ use XML::Simple;

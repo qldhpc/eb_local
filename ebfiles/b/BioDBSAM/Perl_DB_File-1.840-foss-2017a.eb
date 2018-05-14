@@ -1,0 +1,43 @@
+easyblock = 'Bundle'
+
+name = 'Perl_DB_File'
+version = '1.840'
+perlver = '5.26.0'
+
+homepage = 'https://metacpan.org'
+description = """Read SAM/BAM database files"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', perlver, '-bare'),
+    ('libgd','2.2.4'),
+    ('db','6.2.32'),
+]
+
+exts_list = [
+    ('Module::Build', '0.4224', {
+        'source_tmpl': 'Module-Build-0.4224.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/L/LE/LEONT'],
+    }),
+    ('DB_File', '1.840', {
+        'source_tmpl': 'DB_File-1.838.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/P/PM/PMQS'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/site_perl/%(perlver)s'],
+}
+
+moduleclass = 'lang'
+

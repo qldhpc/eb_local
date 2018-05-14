@@ -1,0 +1,36 @@
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+# Modified by Adam Huffman
+# The Francis Crick Institute
+easyblock = 'BinariesTarball'
+
+name = 'Novoalign'
+version = '3.04.06'
+
+homepage = 'http://www.novocraft.com/products/novoalign/'
+description = """Map short reads onto a reference genome from Illumina, Ion Torrent, and 454 next
+ generation sequencing platforms"""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['novocraftV%(version)s.Linux2.6.tar.gz']
+source_urls = ['http://www.novocraft.com/support/download/']
+
+executables = [
+'installpackages.R', 'IONTorrent.R', 'isnovoindex', 'novo2paf', 'novo2sam.pl', 'novoalign',
+'novoalignCS', 'novoalignCSMPI', 'novoalignMPI', 'novobarcode', 'novoindex', 'novolrcleaver',
+'novolrcorrector', 'novomethyl', 'novope2bed.pl', 'novorun.pl', 'novosort', 'novoutil', 
+'qcalplot.R',
+]
+
+postinstallcmds = ["mv *.pdf .."]
+
+files_to_copy = [(executables, 'bin')]
+
+# The sanity test MUST be tuned before going production and submitting your contribution to upstream git repositories
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["."]
+}
+
+moduleclass = 'bio'
+

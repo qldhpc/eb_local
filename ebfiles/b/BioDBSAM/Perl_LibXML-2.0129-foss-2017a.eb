@@ -1,0 +1,74 @@
+easyblock = 'Bundle'
+
+name = 'Perl_LibXML'
+version = '2.0129'
+perlver = '5.26.0'
+
+homepage = 'https://metacpan.org'
+description = """Read SAM/BAM database files"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', perlver, '-bare'),
+    ('db','6.2.32'),
+]
+
+exts_list = [
+    ('Module::Build', '0.4224', {
+        'source_tmpl': 'Module-Build-0.4224.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/L/LE/LEONT'],
+    }),
+    ('XML::LibXML', '2.0129', {
+        'source_tmpl': 'XML-LibXML-2.0129.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/S/SH/SHLOMIF'],
+    }),
+    ('XML::NamespaceSupport', '1.12', {
+        'source_tmpl': 'XML-NamespaceSupport-1.12.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN'],
+    }),
+    ('XML::DOM::XPath', '0.14', {
+        'source_tmpl': 'XML-DOM-XPath-0.14.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/M/MI/MIROD'],
+    }),
+    ('XML::SAX::Exception', '1.09', {
+        'source_tmpl': 'XML-SAX-Base-1.09.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM'],
+    }),
+    ('XML::SAX', '0.99', {
+        'source_tmpl': 'XML-SAX-0.99.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/G/GR/GRANTM'],
+    }),
+    ('XML::Parser::PerlSAX', '0.08', {
+        'source_tmpl': 'libxml-perl-0.08.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/K/KM/KMACLEOD'],
+    }),
+    ('XML::SAX::Writer', '0.57', {
+        'source_tmpl': 'XML-SAX-Writer-0.57.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/P/PE/PERIGRIN'],
+    }),
+    ('XML::Writer', '0.625', {
+        'source_tmpl': 'XML-Writer-0.625.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/J/JO/JOSEPHW'],
+    }),
+    ('XML::Twig', '3.52', {
+        'source_tmpl': 'XML-Twig-3.52.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/M/MI/MIROD'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/site_perl/%(perlver)s'],
+}
+
+moduleclass = 'lang'
+

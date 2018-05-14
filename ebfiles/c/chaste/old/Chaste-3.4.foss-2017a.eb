@@ -1,0 +1,36 @@
+easyblock = 'Chaste'
+
+name = 'Chaste'
+version = '3.4'
+
+homepage = 'http://opencv.org/'
+description = """OpenCV (Open Source Computer Vision Library) is an open source computer vision
+ and machine learning software library. OpenCV was built to provide
+ a common infrastructure for computer vision applications and to accelerate
+ the use of machine perception in the commercial products."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# use downloaded svn repository NOT release (doesn't work)
+sources = ['chaste_%(version_major)s.%(version_minor)s.tar.gz']
+configopts = '-DPETSC_EXECUTABLE_RUNS=ON -DPETSC_DIR=${EBROOTPETSC} -DPETSC_ARCH=arch-linux2-c-opt '
+configopts += '-DHDF5_ROOT=${EBROOTHDF5} -DSUNDIALS_ROOT=${EBROOTSUNDIALS} '
+configopts += "-DCMAKE_CXX_FLAGS='-O2 -march=native -Wno-deprecated'"
+builddependencies = [
+    ('CMake', '3.7.2'),
+]
+patches = [('cmake.patch',1),('cell.patch',1),('petsc.patch',1)]
+dependencies = [
+    ('PetSC','3.7.6'),
+    ('openmpi','2.0.2','-gcc-6.3.0-2.27',True),
+    ('Boost','1.61.0'),
+    ('Xerces-c++','3.2.0'),
+    ('Hdf5','1.8.16'),
+    ('Parmetis','4.0.3'),
+    ('fltk','1.3.4'),
+    ('sundials','2.7.0'),
+    ('VTK','8.0.1'),
+    ('XSD','3.3.0','',True),
+]
+
+moduleclass = 'vis'

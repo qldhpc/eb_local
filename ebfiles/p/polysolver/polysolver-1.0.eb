@@ -1,0 +1,45 @@
+
+# This file is an EasyBuild reciPY as per 
+# https://github.com/hpcugent/easybuild
+# Modified by Adam Huffman
+# The Francis Crick Institute
+easyblock = 'Binary'
+
+name = 'polysolver'
+version = '1.0'
+
+homepage = 'http://archive.broadinstitute.org/cancer/cga/polysolver_run'
+description = """POLYSOLVER is a tool for HLA typing based on whole exome sequencing (WES) data and 
+ infers alleles for the three major MHC class I (HLA-A, -B, -C) 
+genes."""
+
+# toolchain name should be 'TEMPLATE' if this is a template, so EasyBuild knows and is willing to use it as a template
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+toolchainopts = {}  # toolchain options, e.g. opt, pic, usempi, optarch, ...
+
+sources = ['%(name)s_%(version)s.tar.gz']
+#Need to download manually from the below site after creating an account
+#source_urls = ['http://archive.broadinstitute.org/cancer/cga/sites/default/files/data/tools/polysolver/polysolver_v1.0.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ name +' %(installdir)s'
+
+patches = []
+
+dependencies = [
+    ('strelka', '1.0.15', '-foss-2016b'),
+    ('Novoalign', '3.04.06'),
+    ('GATK', '3.3-0', '-Java-1.7.0_80'),
+    ('MuTect', '1.1.7', '-Java-1.7.0_80'),
+    ('Perl', '5.22.1', '-foss-2016a'),
+    ('BioPerl', '1.6.924', '-foss-2016a-Perl-5.22.1'),
+    ('polysolver-Perl-bundle', '0.1','-foss-2016a-Perl-5.22.1' ),
+]
+
+# The sanity test MUST be tuned before going production and submitting your contribution to upstream git repositories
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["."]
+}
+
+moduleclass = 'bio'

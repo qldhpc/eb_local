@@ -1,0 +1,28 @@
+easyblock ='ConfigureMake'
+
+name = 'Biogeme'
+version = '2.6a'
+
+homepage = 'http://biogeme.epfl.ch/home.html'
+description = """Biogeme is an open source freeware designed for the maximum likelihood estimation of parametric models in general, with a special emphasis on discrete choice models. """
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+source_urls = ['http://biogeme.epfl.ch/distrib/']
+sources = [name+'-'+version+'.tar.gz']
+
+dependencies = [
+    ('Python', '3.6.1'),
+    ('ipopt','3.12.8'),
+]
+
+
+#configopts =' --enable-gnu-packages  -with-blas="-L$EBROOTOPENBLAS/lib -lopenblas"'
+
+#buildopts =''
+
+sanity_check_paths = {
+    'files':["bin/biogeme","bin/pybiogeme","bin/biosim","bin/mod2py","bin/biomerge","bin/weightedhistogram","bin/histogram","bin/biocheckdata","bin/biopreparedata"],
+    'dirs': ["bin","share"],
+}
+
+moduleclass = 'tools'

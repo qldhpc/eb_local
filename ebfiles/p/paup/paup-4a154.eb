@@ -1,0 +1,31 @@
+easyblock = 'Binary'
+
+name = 'paup'
+version = '4a154'
+
+ndashv = '%(name)s%(version)s'
+bin_name = ndashv+'_centos64'
+
+homepage = 'http://people.sc.fsu.edu/~dswofford/paup_test/'
+description ="""PAUP* (Phylogenetic Analysis Using Parsimony *and other methods) is a program for phylogenetic analysis using parsimony, maximum likelihood, and distance methods (Swofford 2003). The program features an extensive selection of analysis options and model choices, and accommodates DNA, RNA, protein and general data types. Among the many strengths of the program are the rich array of options for dealing with phylogenetic trees including importing, combining, comparing, constraining, rooting and testing hypotheses. """
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['http://people.sc.fsu.edu/~dswofford/paup_test/']
+sources = [bin_name+'.gz']
+
+install_cmd = 'gunzip -k ' + sources[0]
+install_cmd += '; chmod +x '+ bin_name
+install_cmd += '; cp ' + bin_name +' %(installdir)s/'+ name
+
+
+sanity_check_paths = {
+    
+    'files':[name],
+    'dirs': []
+}
+
+
+modextrapaths = { 'PATH': [' ']}
+
+moduleclass = 'bio'

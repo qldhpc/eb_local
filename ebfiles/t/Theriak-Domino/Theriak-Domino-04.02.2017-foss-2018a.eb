@@ -1,0 +1,43 @@
+easyblock = 'Binary'
+
+name = 'Theriak-Domino'
+version = '04.02.2017'
+
+
+homepage = 'http://titan.minpet.unibas.ch/minpet/theriak/theruser.html'
+description ="""
+What is the THERIAK-DOMINO software?
+The THERIAK-DOMINO Software is a program collection written by C. de Capitani to calculate and plot thermodynamic functions, equilibrium assemblages and rock-specific equilibrium assemblage diagrams (elsewhere also called pseudo-sections). This collection includes the following programs:
+
+Theriak, the heart of the collection, calculates the stable mineral assemblage and phase compositions for a given rock (bulk composition) at specified P,T conditions.
+
+Domino may calculate (a) equilibrium assemblage diagrams with selectable axes (P, T, components activity and logarithms of components activity), (b) Pseudo-binary or pseudo-ternary phase diagrams, (c) Phase compositional isopleths as well as density, volume or modal amount distributions; (d) Distribution of rock bulk parameters.
+
+Therbin and Therter calculate binary and ternary phase diagrams at constant P and/or T.
+
+Thalia and Thermo calculate the phase or assemblage dependence of thermodynamic parameters on T or P or (binary) composition.
+
+Guzzler and Explot are used to transform graphics information from the above programs to 'ready to use' postscript files that can be viewed on screen or printed to a hard-copy.
+
+All programs are free for non-commercial purposes and may be used only at the user's responsibility.
+
+ """ 
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ['http://titan.minpet.unibas.ch/minpet/theriak/prog170204/TheriakDominoMAC/']
+sources = ['Programs.zip']
+
+install_cmd = 'unzip '+ sources[0]  
+install_cmd += '; cd Programs'
+install_cmd += '; make all -j'
+install_cmd += '; cd ../ ; cp Programs/* %(installdir)s'
+
+
+sanity_check_paths = {
+    
+    'files': ["theriak","domino"],
+    'dirs': []
+}
+
+moduleclass = 'phys'

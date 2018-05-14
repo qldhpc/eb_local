@@ -1,0 +1,55 @@
+# Built with EasyBuild version 3.2.1 on 2017-08-10_13-53-03
+easyblock = 'ConfigureMake'
+
+name = 'Tk'
+version = '8.6.6'
+versionsuffix = '-no-X11'
+
+homepage = 'http://www.tcl.tk/'
+description = """Tk is an open source, cross-platform widget toolchain that provides a library of basic elements for building
+ a graphical user interface (GUI) in many different programming languages."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ["http://prdownloads.sourceforge.net/tcl"]
+sources = ['%(namelower)s%(version)s-src.tar.gz']
+
+patches = ['Tk-%(version)s-Makefile.in.patch']
+
+dependencies = [
+    ('Tcl', version),
+    ('zlib', '1.2.11')
+]
+
+# To be clear: this will still require X11 to be present (see issue #2261)
+configopts = '--enable-threads --with-tcl=$EBROOTTCL/lib --without-x CFLAGS="-I$EBROOTTCL/include"'
+
+start_dir = 'unix'
+
+moduleclass = 'vis'
+
+# Build statistics
+buildstats = [{
+    "build_time": 12.74,
+    "command_line": ["--buildpath='/pkg/suse12/build'", "--configfiles='/pkg/suse12/eb_local/config.cfg'", '--debug', "--github-user='qldhpc'", "--include-easyblocks='/pkg/suse12/eb_local/eb_blocks/*/*.py'", "--include-module-naming-schemes='/pkg/suse12/eb_local/custom_mns/easybuild_mns_lc.py'", "--installpath='/pkg/suse12'", "--job-backend='PbsPython'", "--module-naming-scheme='EasyBuildMNSlc'", "--module-syntax='Tcl'", "--modules-footer='/pkg/suse12/eb_local/module.footer'", "--modules-tool='EnvironmentModulesC'", "--packagepath='/pkg/suse12/packages'", "--prefix='/pkg/suse12'", '--rebuild', "--repositorypath='/pkg/suse12/ebfiles_repo'", "--robot='/pkg/suse12/eb_local/ebfiles:/pkg/suse12/ebfiles_repo:/pkg/suse12/software/easybuild/3.2.1/lib/python2.7/site-packages/easybuild_easyconfigs-3.2.1-py2.7.egg/easybuild/easyconfigs'", "--robot-paths='/pkg/suse12/eb_local/ebfiles:/pkg/suse12/ebfiles_repo:'", "--sourcepath='/pkg/suse12/sources'", 'Tk-8.6.6-foss-2017a-no-X11.eb'],
+    "core_count": 32,
+    "cpu_model": "Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz",
+    "cpu_speed": 3300.0,
+    "cpu_vendor": "Intel",
+    "easybuild-easyblocks_version": "3.2.1",
+    "easybuild-framework_version": "3.2.1",
+    "gcc_version": "Using built-in specs.; COLLECT_GCC=gcc; COLLECT_LTO_WRAPPER=/pkg/suse12/software/gcccore/6.3.0/libexec/gcc/x86_64-pc-linux-gnu/6.3.0/lto-wrapper; Target: x86_64-pc-linux-gnu; Configured with: ../configure --enable-languages=c,c++,fortran --enable-lto --enable-checking=release --disable-multilib --enable-shared=yes --enable-static=yes --enable-threads=posix --enable-gold=default --enable-plugins --enable-ld --with-plugin-ld=ld.gold --prefix=/pkg/suse12/software/gcccore/6.3.0 --with-local-prefix=/pkg/suse12/software/gcccore/6.3.0 --enable-bootstrap --with-isl=/data1/eb_build/GCCcore/6.3.0/dummy-/gcc-6.3.0/stage2_stuff; Thread model: posix; gcc version 6.3.0 (GCC) ; ",
+    "glibc_version": "2.19",
+    "hostname": "cl2n058",
+    "install_size": 8857734,
+    "modules_tool": ('EnvironmentModulesC', '/usr/bin/modulecmd', '3.2.10'),
+    "os_name": "SLES",
+    "os_type": "Linux",
+    "os_version": "12",
+    "platform_name": "x86_64-unknown-linux",
+    "python_version": "2.7.13 (default, Jan 11 2017, 10:56:06) [GCC]",
+    "system_gcc_path": "/pkg/suse12/software/gcccore/6.3.0/bin/gcc",
+    "system_python_path": "/usr/bin/python",
+    "timestamp": 1502337183,
+    "total_memory": 64200,
+}]

@@ -1,0 +1,13 @@
+diff -Naur old/Common/DataModel/vtkPointLocator.h new/Common/DataModel/vtkPointLocator.h
+--- old/Common/DataModel/vtkPointLocator.h	2017-09-14 15:50:54.172571787 +1000
++++ new/Common/DataModel/vtkPointLocator.h	2017-09-14 15:35:48.669151571 +1000
+@@ -272,6 +272,9 @@
+   double InsertionLevel;
+ 
+   // These are inlined methods and data members for performance reasons
++#ifdef HZ
++#undef HZ
++#endif
+   double HX, HY, HZ;
+   double FX, FY, FZ, BX, BY, BZ;
+   vtkIdType XD, YD, ZD, SliceSize;

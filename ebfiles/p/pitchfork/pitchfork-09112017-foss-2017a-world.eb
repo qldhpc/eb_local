@@ -1,0 +1,47 @@
+easyblock = 'ConfigureMake'
+
+name = 'pitchfork'
+# made-up version since it doesn't have one (last commit date)
+version = '09112017'
+# other targets are possible - see main Makefile
+versionsuffix = "-world"
+
+homepage = 'https://github.com/PacificBiosciences/pitchfork'
+description = """Pitchfork is a collection of proof-of-concept building scripts for building pacbio software from the github projects using a dumb Makefile file."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+# have to download via git clone to get .git directory
+# place in /pkg/suse12/sources/pitchfork directory
+sources = ['pitchfork.tar.gz']
+
+# patch all makefiles to use https: not git:
+# also patch in new .git/settings.mk
+# make sure you revise the contents of new/.git/settings.mk
+# and rebuild the patch with make-patch.sh
+
+patches = [ ('pitchfork.patch', 1) ]
+
+dependencies = [
+    ('zlib','1.2.11'),
+    ('cmake','3.7.2'),
+    ('python','2.7.9'),
+    ('openblas','0.2.19','-gcc-6.3.0-2.27-lapack-3.7.0',True),
+# latest version that works is 1.63: 1.64 does not have serialization::make_array
+    ('boost','1.61.0'),
+# must use this version since pitchfork does NOT use mpi
+# else you get missing mpi function errors at link-time
+    ('hdf5','1.8.18','-nompi'), 
+]
+
+# Makefile installs also
+# configure through settings.mk
+skipsteps = ['configure','install']
+
+# only non-standard targets available in Makefile
+buildopts = "world"
+sanity_check_paths = {
+    'files': ['bin/bam2fastq'],
+    'dirs': ['bin','lib'],
+}
+
+moduleclass = 'bio'

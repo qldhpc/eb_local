@@ -1,0 +1,19 @@
+name = 'ANSYS'
+version = '16.2'
+
+homepage = 'http://www.ansys.com'
+description = """ANSYS simulation software enables organizations to confidently predict 
+    how their products will operate in the real world. We believe that every product is 
+    a promise of something greater. """
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+# create a tar file from the 3 install iso files by extracting all iso files into a single folder, then tar the #folder and copy the tar file to the correct location.
+# make sure all files of the iso's are in the same directory.
+sources = ['ansys16.2.tar']
+
+import os
+license_server = os.getenv('EB_ANSYS_LICENSE_SERVER', '')
+license_server_port = os.getenv('EB_ANSYS_LICENSE_SERVER_PORT', '')
+
+moduleclass = 'cae'

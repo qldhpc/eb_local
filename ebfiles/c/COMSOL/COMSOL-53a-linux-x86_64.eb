@@ -1,0 +1,24 @@
+##
+# This is an easyconfig file for EasyBuild, see https://github.com/hpcugent/easybuild
+#	Author:: Hamish Macintosh <hamish.macintosh@qut.edu.au>
+
+easyblock = 'EB_COMSOL'
+
+name = "COMSOL"
+version = "53a"
+variant = "linux-x86_64"
+
+
+homepage = "https://www.comsol.com"
+description ="COMSOL Multiphysics® is a general-purpose software platform, based on advanced numerical methods, for modeling and simulating physics-based problems."
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+import os
+#set enviroment variable in current session or modify the below
+license_server= os.getenv('EB_COMSOL_LICENSE_SERVER', 'license.example.com')
+license_server_port= os.getenv('EB_COMSOL_LICENSE_SERVER_PORT', '00000')
+
+sources = ['%s%s.tar' % (name,version)]
+
+moduleclass = 'phys'

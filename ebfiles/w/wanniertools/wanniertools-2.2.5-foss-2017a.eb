@@ -1,0 +1,19 @@
+easyblock = 'ConfigureMake'
+
+name = 'wanniertools'
+version = '2.2.5'
+
+homepage = 'https://github.com/quanshengwu/wannier_tools'
+description = """WannierTools, a tool for investigation of novel topological materials."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = [
+    'https://github.com/quanshengwu/wannier_tools/archive/',
+]
+buildopts = 'CFLAGS="-I." -C soc -f Makefile.gfortran '
+sources = ['V%(version)s.tar.gz']
+
+skipsteps =['configure']
+
+moduleclass = 'phys'

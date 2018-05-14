@@ -1,0 +1,21 @@
+# Built with EasyBuild version 2.9.0 on 2016-11-24_16-25-06
+easyblock = 'Tarball'
+
+name = 'XSD'
+version = '3.3.0'
+
+homepage = 'http://www.scm.com/ADF/'
+description = """ADF is an accurate, parallelized, powerful computational chemistry program to understand and
+ predict chemical structure and reactivity with density functional theory (DFT)."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+sources = ['xsd-%(version)s-x86_64-linux-gnu.tar.bz2']
+source_urls = ['http://www.codesynthesis.com/download/xsd/%(version_major_minor)s/linux-gnu/x86_64/']
+modextravars = {'XSD_ROOT':'%(installdir)s'}
+sanity_check_paths = {
+    'files': ['bin/xsd'],
+    'dirs': ['bin','libxsd'],
+}
+
+moduleclass = 'tools'
+

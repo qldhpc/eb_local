@@ -1,0 +1,566 @@
+diff -Naur old/.git/settings.mk new/.git/settings.mk
+--- old/.git/settings.mk	1970-01-01 10:00:00.000000000 +1000
++++ new/.git/settings.mk	2018-01-04 13:37:23.915743372 +1000
+@@ -0,0 +1,11 @@
++## What we use internally
++PREFIX         = /pkg/suse12/software/pitchfork/09112017-foss-2017a-bax2bam
++WORKDIR        = /pkg/suse12/build/pitchfork/09112017/foss-2017a-bax2bam/pitchfork/workspace
++HAVE_ZLIB      = /pkg/suse12/software/zlib/1.2.11-foss-2017a
++HAVE_PYTHON    = /pkg/suse12/software/python/2.7.13-foss-2017a-foss/bin/python
++HAVE_OPENBLAS  = /pkg/suse12/software/openblas/0.2.9-foss-2017a-lapack-3.7.0/lib
++HAVE_BOOST     = /pkg/suse12/software/boost/1.64.0-foss-2017a
++HAVE_CMAKE     = /pkg/suse12/software/cmake/3.7.2-foss-2017a/bin/cmake
++HAVE_HDF5      = /pkg/suse12/software/hdf5/1.8.18-foss-2017a-nompi
++CC             = gcc
++FC             = gfortran
+diff -Naur old/ports/pacbio/bam2fastx/Makefile new/ports/pacbio/bam2fastx/Makefile
+--- old/ports/pacbio/bam2fastx/Makefile	2017-12-13 11:04:34.615762202 +1000
++++ new/ports/pacbio/bam2fastx/Makefile	2017-12-13 10:56:32.277127766 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = bam2fastx
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/bax2bam/Makefile new/ports/pacbio/bax2bam/Makefile
+--- old/ports/pacbio/bax2bam/Makefile	2017-12-13 11:04:34.459756176 +1000
++++ new/ports/pacbio/bax2bam/Makefile	2017-12-13 10:56:32.293128384 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = bax2bam
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/blasr/Makefile new/ports/pacbio/blasr/Makefile
+--- old/ports/pacbio/blasr/Makefile	2017-12-13 11:04:34.483757103 +1000
++++ new/ports/pacbio/blasr/Makefile	2017-12-13 10:56:32.297128539 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = blasr
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/blasr_libcpp/Makefile new/ports/pacbio/blasr_libcpp/Makefile
+--- old/ports/pacbio/blasr_libcpp/Makefile	2017-12-13 11:04:34.487757258 +1000
++++ new/ports/pacbio/blasr_libcpp/Makefile	2017-12-13 10:56:32.301128693 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = blasr_libcpp
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/Cogent/Makefile new/ports/pacbio/Cogent/Makefile
+--- old/ports/pacbio/Cogent/Makefile	2017-12-13 11:04:34.487757258 +1000
++++ new/ports/pacbio/Cogent/Makefile	2017-12-13 10:56:31.517098398 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = Cogent
+-$(_NAME)_REPO    ?= git://github.com/Magdoll/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/Magdoll/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/ConsensusCore/Makefile new/ports/pacbio/ConsensusCore/Makefile
+--- old/ports/pacbio/ConsensusCore/Makefile	2017-12-13 11:04:34.499757721 +1000
++++ new/ports/pacbio/ConsensusCore/Makefile	2017-12-13 10:56:31.521098552 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = ConsensusCore
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/daligner/Makefile new/ports/pacbio/daligner/Makefile
+--- old/ports/pacbio/daligner/Makefile	2017-12-13 11:04:34.507758030 +1000
++++ new/ports/pacbio/daligner/Makefile	2017-12-13 10:56:32.301128693 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = daligner
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/DALIGNER
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/DALIGNER
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/damasker/Makefile new/ports/pacbio/damasker/Makefile
+--- old/ports/pacbio/damasker/Makefile	2017-12-13 11:04:34.523758648 +1000
++++ new/ports/pacbio/damasker/Makefile	2017-12-13 10:56:32.305128848 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = damasker
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/DAMASKER
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/DAMASKER
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/dazzdb/Makefile new/ports/pacbio/dazzdb/Makefile
+--- old/ports/pacbio/dazzdb/Makefile	2017-12-13 11:04:34.539759266 +1000
++++ new/ports/pacbio/dazzdb/Makefile	2017-12-13 10:56:32.309129003 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = dazzdb
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/DAZZ_DB
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/DAZZ_DB
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/dextractor/Makefile new/ports/pacbio/dextractor/Makefile
+--- old/ports/pacbio/dextractor/Makefile	2017-12-13 11:04:34.555759884 +1000
++++ new/ports/pacbio/dextractor/Makefile	2017-12-13 10:56:32.309129003 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = dextractor
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/DEXTRACTOR
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/DEXTRACTOR
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/falcon_kit/Makefile new/ports/pacbio/falcon_kit/Makefile
+--- old/ports/pacbio/falcon_kit/Makefile	2017-12-13 11:04:34.571760502 +1000
++++ new/ports/pacbio/falcon_kit/Makefile	2017-12-13 10:56:32.313129157 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = falcon_kit
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/FALCON
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/FALCON
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/falcon_polish/Makefile new/ports/pacbio/falcon_polish/Makefile
+--- old/ports/pacbio/falcon_polish/Makefile	2017-12-13 11:04:34.619762356 +1000
++++ new/ports/pacbio/falcon_polish/Makefile	2017-12-13 10:56:32.717144768 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = falcon_polish
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/FALCON-polish
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/FALCON-polish
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/FALCON_unzip/Makefile new/ports/pacbio/FALCON_unzip/Makefile
+--- old/ports/pacbio/FALCON_unzip/Makefile	2017-12-13 11:04:34.519758494 +1000
++++ new/ports/pacbio/FALCON_unzip/Makefile	2017-12-13 10:56:32.241126375 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = FALCON_unzip
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/FALCON_unzip
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/FALCON_unzip
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/fasta2bam/Makefile new/ports/pacbio/fasta2bam/Makefile
+--- old/ports/pacbio/fasta2bam/Makefile	2017-12-13 11:04:34.463756330 +1000
++++ new/ports/pacbio/fasta2bam/Makefile	2017-12-13 10:56:32.733145387 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = fasta2bam
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/GenomicConsensus/Makefile new/ports/pacbio/GenomicConsensus/Makefile
+--- old/ports/pacbio/GenomicConsensus/Makefile	2017-12-13 11:04:34.535759112 +1000
++++ new/ports/pacbio/GenomicConsensus/Makefile	2017-12-13 10:56:32.245126529 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = GenomicConsensus
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/kineticsTools/Makefile new/ports/pacbio/kineticsTools/Makefile
+--- old/ports/pacbio/kineticsTools/Makefile	2017-12-13 11:04:34.471756640 +1000
++++ new/ports/pacbio/kineticsTools/Makefile	2017-12-13 10:56:32.737145542 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = kineticsTools
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/PacBioTestData/Makefile new/ports/pacbio/PacBioTestData/Makefile
+--- old/ports/pacbio/PacBioTestData/Makefile	2017-12-13 11:04:34.551759730 +1000
++++ new/ports/pacbio/PacBioTestData/Makefile	2017-12-13 10:56:32.257126993 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = PacBioTestData
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbalign/Makefile new/ports/pacbio/pbalign/Makefile
+--- old/ports/pacbio/pbalign/Makefile	2017-12-13 11:04:34.491757412 +1000
++++ new/ports/pacbio/pbalign/Makefile	2017-12-13 10:56:32.745145850 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbalign
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbbam/Makefile new/ports/pacbio/pbbam/Makefile
+--- old/ports/pacbio/pbbam/Makefile	2017-12-13 11:04:34.507758030 +1000
++++ new/ports/pacbio/pbbam/Makefile	2017-12-13 10:56:32.745145850 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = pbbam
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbbarcode/Makefile new/ports/pacbio/pbbarcode/Makefile
+--- old/ports/pacbio/pbbarcode/Makefile	2017-12-13 11:04:34.523758648 +1000
++++ new/ports/pacbio/pbbarcode/Makefile	2017-12-13 10:56:32.761146469 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbbarcode
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbcommand/Makefile new/ports/pacbio/pbcommand/Makefile
+--- old/ports/pacbio/pbcommand/Makefile	2017-12-13 11:04:34.543759420 +1000
++++ new/ports/pacbio/pbcommand/Makefile	2017-12-13 10:56:32.765146624 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbcommand
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbcopper/Makefile new/ports/pacbio/pbcopper/Makefile
+--- old/ports/pacbio/pbcopper/Makefile	2017-12-13 11:04:34.559760039 +1000
++++ new/ports/pacbio/pbcopper/Makefile	2017-12-13 10:56:32.769146778 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = pbcopper
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbcore/Makefile new/ports/pacbio/pbcore/Makefile
+--- old/ports/pacbio/pbcore/Makefile	2017-12-13 11:04:34.575760657 +1000
++++ new/ports/pacbio/pbcore/Makefile	2017-12-13 10:56:32.769146778 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbcore
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbcoretools/Makefile new/ports/pacbio/pbcoretools/Makefile
+--- old/ports/pacbio/pbcoretools/Makefile	2017-12-13 11:04:34.619762356 +1000
++++ new/ports/pacbio/pbcoretools/Makefile	2017-12-13 10:56:32.773146932 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbcoretools
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbdagcon/Makefile new/ports/pacbio/pbdagcon/Makefile
+--- old/ports/pacbio/pbdagcon/Makefile	2017-12-13 11:04:34.463756330 +1000
++++ new/ports/pacbio/pbdagcon/Makefile	2017-12-13 10:56:32.777147087 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbdagcon
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbfalcon/Makefile new/ports/pacbio/pbfalcon/Makefile
+--- old/ports/pacbio/pbfalcon/Makefile	2017-12-13 11:04:34.475756794 +1000
++++ new/ports/pacbio/pbfalcon/Makefile	2017-12-13 10:56:32.781147242 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbfalcon
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/FALCON-pbsmrtpipe
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/FALCON-pbsmrtpipe
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbh5tools/Makefile new/ports/pacbio/pbh5tools/Makefile
+--- old/ports/pacbio/pbh5tools/Makefile	2017-12-13 11:04:34.495757566 +1000
++++ new/ports/pacbio/pbh5tools/Makefile	2017-12-13 10:56:32.797147860 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbh5tools
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbreports/Makefile new/ports/pacbio/pbreports/Makefile
+--- old/ports/pacbio/pbreports/Makefile	2017-12-13 11:04:34.527758802 +1000
++++ new/ports/pacbio/pbreports/Makefile	2017-12-13 10:56:32.817148633 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbreports
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbsmrtpipe/Makefile new/ports/pacbio/pbsmrtpipe/Makefile
+--- old/ports/pacbio/pbsmrtpipe/Makefile	2017-12-13 11:04:34.543759420 +1000
++++ new/ports/pacbio/pbsmrtpipe/Makefile	2017-12-13 10:56:32.821148788 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbsmrtpipe
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbsv/Makefile new/ports/pacbio/pbsv/Makefile
+--- old/ports/pacbio/pbsv/Makefile	2017-12-13 11:04:34.563760193 +1000
++++ new/ports/pacbio/pbsv/Makefile	2017-12-13 10:56:32.841149560 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbsv
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbsvtools/Makefile new/ports/pacbio/pbsvtools/Makefile
+--- old/ports/pacbio/pbsvtools/Makefile	2017-12-13 11:04:34.579760811 +1000
++++ new/ports/pacbio/pbsvtools/Makefile	2017-12-13 10:56:32.857150178 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbsvtools
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbtranscript/Makefile new/ports/pacbio/pbtranscript/Makefile
+--- old/ports/pacbio/pbtranscript/Makefile	2017-12-13 11:04:34.623762511 +1000
++++ new/ports/pacbio/pbtranscript/Makefile	2017-12-13 10:56:32.865150488 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbtranscript
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pbtranscript2/Makefile new/ports/pacbio/pbtranscript2/Makefile
+--- old/ports/pacbio/pbtranscript2/Makefile	2017-12-13 11:04:34.467756485 +1000
++++ new/ports/pacbio/pbtranscript2/Makefile	2017-12-13 10:56:32.885151260 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pbtranscript2
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pypeFLOW/Makefile new/ports/pacbio/pypeFLOW/Makefile
+--- old/ports/pacbio/pypeFLOW/Makefile	2017-12-13 11:04:34.499757721 +1000
++++ new/ports/pacbio/pypeFLOW/Makefile	2017-12-13 10:56:32.897151724 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pypeFLOW
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/pysiv2/Makefile new/ports/pacbio/pysiv2/Makefile
+--- old/ports/pacbio/pysiv2/Makefile	2017-12-13 11:04:34.515758339 +1000
++++ new/ports/pacbio/pysiv2/Makefile	2017-12-13 10:56:32.905152034 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = pysiv2
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/seqan/Makefile new/ports/pacbio/seqan/Makefile
+--- old/ports/pacbio/seqan/Makefile	2017-12-13 11:04:34.531758957 +1000
++++ new/ports/pacbio/seqan/Makefile	2017-12-13 10:56:32.909152188 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = seqan
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/smrtflow/Makefile new/ports/pacbio/smrtflow/Makefile
+--- old/ports/pacbio/smrtflow/Makefile	2017-12-13 11:04:34.547759575 +1000
++++ new/ports/pacbio/smrtflow/Makefile	2017-12-13 10:56:32.921152652 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = smrtflow
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/trim_isoseq_polyA/Makefile new/ports/pacbio/trim_isoseq_polyA/Makefile
+--- old/ports/pacbio/trim_isoseq_polyA/Makefile	2017-12-13 11:04:34.563760193 +1000
++++ new/ports/pacbio/trim_isoseq_polyA/Makefile	2017-12-13 10:56:32.925152806 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = trim_isoseq_polyA
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/pacbio/unanimity/Makefile new/ports/pacbio/unanimity/Makefile
+--- old/ports/pacbio/unanimity/Makefile	2017-12-13 11:04:34.583760966 +1000
++++ new/ports/pacbio/unanimity/Makefile	2017-12-13 10:56:32.925152806 +1000
+@@ -5,7 +5,7 @@
+ 
+ # Local variables
+ _NAME             = unanimity
+-$(_NAME)_REPO    ?= git://github.com/PacificBiosciences/$(_NAME)
++$(_NAME)_REPO    ?= https://github.com/PacificBiosciences/$(_NAME)
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION ?= HEAD
+ _REVISION         = $(shell cd $(_WRKSRC) && $(GIT) rev-parse --short $($(_NAME)_VERSION) || true)
+diff -Naur old/ports/thirdparty/htslib/Makefile new/ports/thirdparty/htslib/Makefile
+--- old/ports/thirdparty/htslib/Makefile	2017-12-13 11:04:34.355752159 +1000
++++ new/ports/thirdparty/htslib/Makefile	2017-12-15 16:51:38.151589554 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME    = htslib
+-_VERSION = 1.3.2
++_VERSION = 1.4.1
+ _FILE    = $(_NAME)-$(_VERSION).tar.bz2
+ _URL     = https://github.com/samtools/htslib/releases/download/$(_VERSION)
+ _WRKSRC  = $(WORKDIR)/$(_NAME)-$(_VERSION)
+diff -Naur old/ports/thirdparty/htslib/MD5SUM new/ports/thirdparty/htslib/MD5SUM
+--- old/ports/thirdparty/htslib/MD5SUM	2018-01-04 10:51:00.204074665 +1000
++++ new/ports/thirdparty/htslib/MD5SUM	2018-01-04 10:55:27.126418350 +1000
+@@ -1,4 +1 @@
+-88eec909855abd98032bc2f9c3e83271  htslib-1.2.1.tar.bz2
+-16d78f90b72f29971b042e8da8be6843  htslib-1.3.1.tar.bz2
+-64742a2a812da1bb6eb4417128be6944  htslib-1.3.2.tar.bz2
+ e549fee04d95c1cf8f46347e9e9bbd93  htslib-1.4.1.tar.bz2
+diff -Naur old/ports/thirdparty/readline/Makefile new/ports/thirdparty/readline/Makefile
+--- old/ports/thirdparty/readline/Makefile	2017-12-13 11:04:34.407754167 +1000
++++ new/ports/thirdparty/readline/Makefile	2017-12-13 10:56:35.353246630 +1000
+@@ -1,7 +1,7 @@
+ include ../../../mk/pitchfork.mk
+ 
+ # Local variables
+-_NAME   = readline-6.3
++_NAME   = readline-7.0
+ _URL    = ftp://ftp.gnu.org/gnu/readline
+ _WRKSRC = $(WORKDIR)/$(_NAME)
+ ifneq ($(OPSYS),Darwin)
+diff -Naur old/ports/thirdparty/readline/MD5SUM new/ports/thirdparty/readline/MD5SUM
+--- old/ports/thirdparty/readline/MD5SUM	2017-12-13 12:49:40.181855494 +1000
++++ new/ports/thirdparty/readline/MD5SUM	2017-12-13 13:17:00.872988424 +1000
+@@ -1 +1 @@
+-33c8fb279e981274f485fd91da77e94a  readline-6.3.tar.gz
++205b03a87fc83dab653b628c59b9fc91  readline-7.0.tar.gz
+diff -Naur old/ports/thirdparty/samtools/Makefile new/ports/thirdparty/samtools/Makefile
+--- old/ports/thirdparty/samtools/Makefile	2017-12-13 11:04:34.423754786 +1000
++++ new/ports/thirdparty/samtools/Makefile	2018-01-03 14:48:00.621263177 +1000
+@@ -1,8 +1,8 @@
+ include ../../../mk/pitchfork.mk
+ 
+ # Local variables
+-_NAME   = samtools-1.3.1
+-_URL    = https://github.com/samtools/samtools/releases/download/1.3.1
++_NAME   = samtools-1.4.1
++_URL    = https://github.com/samtools/samtools/releases/download/1.4.1
+ _WRKSRC = $(WORKDIR)/$(_NAME)
+ _FILE   = $(_NAME).tar.bz2
+ 
+@@ -21,9 +21,9 @@
+ do-config: $(_WRKSRC)/config.log
+ $(_WRKSRC)/config.log: | do-extract
+ 	(cd $(_WRKSRC) && \
+-         CFLAGS="-I$(_WRKSRC)/htslib-1.3 $(CFLAGS)" ./configure --prefix=$(PREFIX) \
++         CFLAGS="-I$(_WRKSRC)/htslib-1.4 $(CFLAGS)" ./configure --prefix=$(PREFIX) \
+                      --without-ncursesw \
+-                     --with-htslib=$(_WRKSRC)/htslib-1.3.1) >& config.log || $(PFHOME)/bin/diewith config.log
++                     --with-htslib=$(_WRKSRC)/htslib-1.4.1) >& config.log || $(PFHOME)/bin/diewith config.log
+ do-build: $(_WRKSRC)/samtools
+ $(_WRKSRC)/samtools: | do-config
+ 	$(MAKE) CC=$(CC) CFLAGS="-g -Wall -O2 $(CFLAGS)" -C $(_WRKSRC) >& build.log || $(PFHOME)/bin/diewith build.log
+diff -Naur old/ports/thirdparty/samtools/MD5SUM new/ports/thirdparty/samtools/MD5SUM
+--- old/ports/thirdparty/samtools/MD5SUM	2017-12-18 15:03:22.313689510 +1000
++++ new/ports/thirdparty/samtools/MD5SUM	2017-12-18 15:03:47.942677965 +1000
+@@ -1 +1,2 @@
+-a7471aa5a1eb7fc9cc4c6491d73c2d88  samtools-1.3.1.tar.bz2
++4860d6a8f85c6965a7e82fb11afbde13  samtools-1.4.1.tar.bz2
++
+diff -Naur old/ports/thirdparty/ssw_lib/Makefile new/ports/thirdparty/ssw_lib/Makefile
+--- old/ports/thirdparty/ssw_lib/Makefile	2017-12-13 11:04:34.455756022 +1000
++++ new/ports/thirdparty/ssw_lib/Makefile	2017-12-13 10:56:35.577255286 +1000
+@@ -2,7 +2,7 @@
+ 
+ # Local variables
+ _NAME             = ssw_lib
+-$(_NAME)_REPO     = git://github.com/mengyao/Complete-Striped-Smith-Waterman-Library
++$(_NAME)_REPO     = https://github.com/mengyao/Complete-Striped-Smith-Waterman-Library
+ _WRKSRC           = $(WORKDIR)/$(_NAME)
+ $(_NAME)_VERSION  = a9beb7e4c67824538e15fd781002983d2b333261
+ 

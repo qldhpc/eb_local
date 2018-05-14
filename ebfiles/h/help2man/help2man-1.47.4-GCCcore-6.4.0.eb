@@ -1,0 +1,56 @@
+# Built with EasyBuild version 3.5.1 on 2018-01-31_14-06-32
+easyblock = 'ConfigureMake'
+
+name = 'help2man'
+version = '1.47.4'
+
+homepage = 'https://www.gnu.org/software/help2man/'
+
+description = """
+ help2man produces simple manual pages from the '--help' and '--version'
+ output of other commands.
+"""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = [GNU_SOURCE]
+sources = [SOURCE_TAR_XZ]
+checksums = ['d4ecf697d13f14dd1a78c5995f06459bff706fd1ce593d1c02d81667c0207753']
+
+builddependencies = [
+    # use same binutils version that was used when building GCC toolchain
+    ('binutils', '2.28', '', True),
+]
+
+sanity_check_paths = {
+    'files': ['bin/help2man'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'
+
+# Build statistics
+buildstats = [{
+    "build_time": 2.36,
+    "command_line": ["--buildpath='/pkg/suse12/build'", "--configfiles='/pkg/suse12/eb_local/config.cfg'", "--include-easyblocks='/pkg/suse12/eb_local/eb_blocks/*/*/*.py,/pkg/suse12/eb_local/eb_blocks/*/*.py'", "--include-module-naming-schemes='/pkg/suse12/eb_local/custom_mns/easybuild_mns_lc.py'", "--installpath='/pkg/suse12'", "--job-backend='PbsPython'", "--module-naming-scheme='EasyBuildMNSlc'", "--module-syntax='Tcl'", "--modules-footer='/pkg/suse12/eb_local/module.footer'", "--modules-tool='EnvironmentModulesC'", "--packagepath='/pkg/suse12/packages'", "--prefix='/pkg/suse12'", "--repositorypath='/pkg/suse12/ebfiles_repo'", "--robot='/pkg/suse12/eb_local/ebfiles:/pkg/suse12/ebfiles_repo:/pkg/suse12/software/easybuild/3.5.1/lib/python2.7/site-packages/easybuild_easyconfigs-3.5.1-py2.7.egg/easybuild/easyconfigs'", "--robot-paths='/pkg/suse12/eb_local/ebfiles:/pkg/suse12/ebfiles_repo:'", "--sourcepath='/pkg/suse12/sources'", 'foss-2018a.eb'],
+    "core_count": 32,
+    "cpu_model": "Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz",
+    "cpu_speed": 3300.0,
+    "cpu_vendor": "Intel",
+    "easybuild-easyblocks_version": "3.5.1",
+    "easybuild-framework_version": "3.5.1",
+    "gcc_version": "Using built-in specs.; COLLECT_GCC=gcc; COLLECT_LTO_WRAPPER=/pkg/suse12/software/gcccore/6.4.0/libexec/gcc/x86_64-pc-linux-gnu/6.4.0/lto-wrapper; Target: x86_64-pc-linux-gnu; Configured with: ../configure --enable-languages=c,c++,fortran --enable-lto --enable-checking=release --disable-multilib --enable-shared=yes --enable-static=yes --enable-threads=posix --enable-gold=default --enable-plugins --enable-ld --with-plugin-ld=ld.gold --prefix=/pkg/suse12/software/gcccore/6.4.0 --with-local-prefix=/pkg/suse12/software/gcccore/6.4.0 --enable-bootstrap --with-isl=/data1/eb_build/GCCcore/6.4.0/dummy-/gcc-6.4.0/stage2_stuff; Thread model: posix; gcc version 6.4.0 (GCC) ; ",
+    "glibc_version": "2.22",
+    "hostname": "cl2n058",
+    "install_size": 485267,
+    "modules_tool": ('EnvironmentModulesC', '/usr/bin/modulecmd', '3.2.10'),
+    "os_name": "SLES",
+    "os_type": "Linux",
+    "os_version": "12",
+    "platform_name": "x86_64-unknown-linux",
+    "python_version": "2.7.13 (default, Jan 11 2017, 10:56:06) [GCC]",
+    "system_gcc_path": "/pkg/suse12/software/gcccore/6.4.0/bin/gcc",
+    "system_python_path": "/usr/bin/python",
+    "timestamp": 1517371592,
+    "total_memory": 64064,
+}]

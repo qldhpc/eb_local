@@ -1,0 +1,34 @@
+easyblock = 'EB_LAMMPS'
+
+name = 'lammps'
+version = 'stable_17Nov2016-atomistica'
+
+homepage = 'https://github.com/lammps/lammps'
+description = """LAMMPS is a classical molecular dynamics code, and an acronym for Large-scale Atomic/Molecular Massively Parallel Simulator.
+LAMMPS has potentials for solid-state materials (metals, semiconductors) and soft matter (biomolecules, polymers) and coarse-grained or mesoscopic systems. It can be used to model atoms or, more generically, as a parallel particle simulator at the atomic, meso, or continuum scale."""
+
+toolchain = {'name': 'intel', 'version': '2015b'}
+toolchainopts = {'usempi': True}
+
+source_urls = ['https://github.com/lammps/lammps/archive/']
+sources = ['%(version)s.tar.gz']
+
+pkgs = ['standard', '^gpu', '^kokkos', 'atc', 'colvars', 'lb', 'misc', 'phonon', 'reaxc', 'sph', 'intel', 'molfile', 'voronoi', 'kim', 'poems', 'reax', 'meam']
+opts = ['-jpg', '-fft mkl', '-m mpi', '-cc mpicxx', '-mpi mpi',]
+lib_opts = ['-atc make=icc lammps=eb', '-meam make=ifort lammps=eb', '-poems make=icc', '-reax make=ifort lammps=eb', '-colvars make=g++', '-intel cpu',]
+actions  = ['lib-meam', 'lib-poems', 'lib-reax', 'lib-atc', 'lib-colvars', ]
+lib_custom_links = {
+'reax':{'SYSLIB': '-lifcore -lsvml -liompstubs5 -limf', 'SYSINC': ' ', 'SYSPATH': '-L/pkg/suse12/software/icc/2015.3.187-gnu-4.9.3-2.25/composer_xe_2015.3.187/compiler/lib/intel64/'},	
+'atc':{'SYSLIB': ' -lmkl_intel_thread -lmkl_core', 'SYSPATH': '-L/pkg/suse12/software/imkl/11.2.3.187-iimpi-7.3.5-gnu-4.9.3-2.25/mkl/lib/intel64', 'SYSINC': ' '}, 
+'meam':{'SYSLIB': '-lifcore -lsvml -liompstubs5 -limf', 'SYSPATH': '-L/pkg/suse12/software/icc/2015.3.187-gnu-4.9.3-2.25/composer_xe_2015.3.187/compiler/lib/intel64/', 'SYSINC': ' '}}
+rename ='lyra'
+flags = ['-flags CCFLAGS add 2 I%(builddir)s/%(name)s-%(version)s/atomistica/src/support I%(builddir)s/%(name)s-%(version)s/atomistica/build_lammps LINKFLAGS add 1 L%(builddir)s/%(name)s-%(version)s/atomistica/build_lammps  LIB add 8 lifcore lifport lmpifort latomistica liomp5 lpthread lifcoremt lirc']
+
+dependencies = [
+    ('openkim', 'v1.7.3'),
+    ('Voro++','0.4.6'),
+    ('libjpeg-turbo','1.4.2'),
+]
+
+
+moduleclass = 'phys'

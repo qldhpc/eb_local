@@ -1,0 +1,77 @@
+easyblock = 'Bundle'
+
+name = 'Perl_Compare'
+version = '3.0.0'
+perlver = '5.26.0'
+
+homepage = 'https://metacpan.org'
+description = """Read SAM/BAM database files"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', perlver, '-bare'),
+]
+
+exts_list = [
+    ('Module::Build', '0.4224', {
+        'source_tmpl': 'Module-Build-0.4224.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/L/LE/LEONT'],
+    }),
+    ('Array::Compare', '3.0.0', {
+        'source_tmpl': 'Array-Compare-v3.0.0.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/D/DA/DAVECROSS'],
+    }),
+    ('Set::Scalar', '1.29', {
+        'source_tmpl': 'Set-Scalar-1.29.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/D/DA/DAVIDO'],
+    }),
+    ('URI::Escape', '1.72', {
+        'source_tmpl': 'URI-1.72.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/E/ET/ETHER'],
+    }),
+    ('Spreadsheet::ParseExcel', '0.65', {
+        'source_tmpl': 'Spreadsheet-ParseExcel-0.65.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/D/DO/DOUGW'],
+    }),
+    ('Text::Diff', '1.45', {
+        'source_tmpl': 'Text-Diff-1.45.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/N/NE/NEILB'],
+    }),
+    ('Algorithm::Diff', '1.1903', {
+        'source_tmpl': 'Algorithm-Diff-1.1903.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/T/TY/TYEMQ'],
+    }),
+    ('IO::Scalar', '2.111', {
+        'source_tmpl': 'IO-stringy-2.111.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/D/DS/DSKOLL'],
+    }),
+    ('IO::String', '1.08', {
+        'source_tmpl': 'IO-String-1.08.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/G/GA/GAAS'],
+    }),
+    ('Data::Stag', '0.14', {
+        'source_tmpl': 'Data-Stag-0.14.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/C/CM/CMUNGALL'],
+    }),    
+    ('Graph::Directed', '0.9704', {
+        'source_tmpl': 'Graph-0.9704.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/J/JH/JHI'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/site_perl/%(perlver)s'],
+}
+
+moduleclass = 'lang'
+

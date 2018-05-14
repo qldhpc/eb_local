@@ -1,0 +1,24 @@
+# Modified from existing version by:
+# Robert Schmidt <rjeschmi@gmail.com>
+# Ottawa Hospital Research Institute - Bioinformatics Team
+name = 'Bowtie'
+version = '1.2.2'
+
+homepage = 'http://bowtie-bio.sourceforge.net/index.shtml'
+description = """Bowtie is an ultrafast, memory-efficient short read aligner.
+It aligns short DNA sequences (reads) to the human genome.
+"""
+# version 1.2.2 won't build with later than gcc 5.4.0 (foss/2016b)
+# use 2016a here because more dependencies available with that toolchain
+
+toolchain = {'name': 'GCCcore', 'version': '4.9.3'}
+toolchainopts = {'pic': True}
+
+sources = ['%(namelower)s-%(version)s-src.zip']
+source_urls = ['http://download.sourceforge.net/bowtie-bio/']
+
+# makefile defaults to WITH_TBB=1 which is not available on Linux (D'oh!)
+modextravars = {'NO_TBB': '1'}
+builddependencies = [('binutils', '2.26')]
+
+moduleclass = 'bio'

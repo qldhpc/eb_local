@@ -1,0 +1,42 @@
+easyblock = 'PythonPackage'
+
+name = 'TensorFlow'
+version = '1.5.0-GPU-P100'
+versionsuffix = '-Python-%(pyver)s'
+versioncuda='-cuda-9.0.176'
+
+homepage = 'http://www.tensorflow.org/'
+description = """TensorFlow is an open source software library for numerical computation using data flow graphs."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = [PYPI_SOURCE]
+#source_urls=['https://storage.googleapis.com/tensorflow/linux/gpu/']
+####Compiled from sources and built as pip packages on local P100 node  
+sources = ['gpu-p100/tensorflow-1.5.0rc1-cp36-cp36m-linux_x86_64.whl']
+
+use_pip = True
+unpack_sources = False
+
+dependencies = [
+    ('python', '3.6.4'),
+    ('cudnn/7-cuda-9.0.176',EXTERNAL_MODULE),
+    ('protobuf-python', '3.5.1', versionsuffix)
+]
+
+#exts_list = [
+#  ('tensorflow-tensorboard', '1.5.0', {
+#        'source_urls': ['https://github.com/tensorflow/tensorboard/archive/'],
+#        'source_tmpl': '%(version)s.tar.gz',
+#    }),
+#]
+
+modextrapaths = {'PYTHONPATH': ['lib/python%(pyshortver)s/site-packages']}
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+skipsteps=['sanity_check_step',]
+
+moduleclass = 'lib'

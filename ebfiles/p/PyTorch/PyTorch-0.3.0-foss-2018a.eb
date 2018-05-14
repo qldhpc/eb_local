@@ -1,0 +1,28 @@
+# Built with EasyBuild version 3.4.0 on 2017-11-21_14-16-38
+easyblock = 'PythonPackage'
+
+name = 'PyTorch'
+version = '0.3.0-P100'
+versioncuda='-cuda-9.0.176'
+
+homepage = 'http://pytorch.org/'
+description = """Tensors and Dynamic neural networks in Python with strong GPU acceleration."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+# github clone tarred and gzipped manually
+sources = ['pytorch-0.3.0.tar.gz']
+
+builddependencies = [('CMake', '3.10.0'),]
+
+dependencies = [
+    ('Python', '3.6.4'),
+    ('cudnn/7-cuda-9.0.176',EXTERNAL_MODULE),
+]
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/python%(pyshortver)s/site-packages'],
+}
+
+moduleclass = 'math'

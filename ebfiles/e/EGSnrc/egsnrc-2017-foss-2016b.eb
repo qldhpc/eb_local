@@ -1,0 +1,35 @@
+easyblock = 'Binary'
+
+name = 'EGSnrc'
+version = '2017'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://www.nrc-cnrc.gc.ca/eng/solutions/advisory/egsnrc_index.html'
+description ="""EGSnrc is a general-purpose software toolkit that can be applied to build Monte Carlo simulations of coupled electron-photon transport, for particle energies ranging from 1 keV to 10 GeV. The included BEAMnrc component includes the dose scoring utility DOSXYZnrc to estimate radiation dose in a voxel geometry, such as patient medical imaging data. It also includes data processing tools to analyze the beam characteristic in detail and generate radiation dose profiles. """ 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+source_urls = ['https://github.com/nrc-cnrc/EGSnrc/archive/']
+sources = ['v%(version)s.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cp -r '+ndashv+'/HEN_HOUSE %(installdir)s'
+install_cmd += '; cd %(installdir)s'
+install_cmd += "; echo $'\n \n \n \n \n \n \n \n \n \n \n \n no\n' |./HEN_HOUSE/scripts/configure"  
+
+dependencies = [
+    ('grace', '5.1.25'),
+    ('motif', '2.3.5'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': ["HEN_HOUSE/scripts/finalize_egs_foruser"],
+    'dirs': ["HEN_HOUSE/","HEN_HOUSE/bin/linux/"]
+}
+
+modextrapaths = { 'PATH': ['HEN_HOUSE/scripts/']}
+
+moduleclass = 'phys'

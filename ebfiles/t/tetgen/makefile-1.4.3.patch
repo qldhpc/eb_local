@@ -1,0 +1,29 @@
+diff -Naur old-1.4.3/makefile new-1.4.3/makefile
+--- old-1.4.3/makefile	2017-11-20 11:10:47.631473700 +1000
++++ new-1.4.3/makefile	2017-11-20 11:21:26.060443709 +1000
+@@ -52,6 +52,10 @@
+ RM = /bin/rm
+ 
+ # The action starts here.
++all:	tetgen.cxx predicates.o
++	$(CXX) $(CXXFLAGS) $(SWITCHES) -o tetgen tetgen.cxx predicates.o -lm
++	$(CXX) $(CXXFLAGS) $(SWITCHES) -DTETLIBRARY -c tetgen.cxx
++	ar r libtet.a tetgen.o predicates.o
+ 
+ tetgen:	tetgen.cxx predicates.o
+ 	$(CXX) $(CXXFLAGS) $(SWITCHES) -o tetgen tetgen.cxx predicates.o -lm
+@@ -66,6 +70,13 @@
+ clean:
+ 	$(RM) *.o *.a tetgen *~
+ 
+-
++.PHONY: install
++install: 
++	mkdir -p /pkg/suse12/software/tetgen/1.4.3-foss-2017a/bin 
++	mkdir -p /pkg/suse12/software/tetgen/1.4.3-foss-2017a/include 
++	mkdir -p /pkg/suse12/software/tetgen/1.4.3-foss-2017a/lib 
++	install -m 557 tetgen /pkg/suse12/software/tetgen/1.4.3-foss-2017a/bin/ 
++	install -m 557 libtet.a /pkg/suse12/software/tetgen/1.4.3-foss-2017a/lib/ 
++	install -m 557 tetgen.h /pkg/suse12/software/tetgen/1.4.3-foss-2017a/include/
+ 
+ 

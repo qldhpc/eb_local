@@ -1,0 +1,150 @@
+diff -Naur old/configure new/configure
+--- old/configure	2017-11-17 13:48:46.069146090 +1000
++++ new/configure	2017-11-17 15:35:27.146926920 +1000
+@@ -15855,7 +15855,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lblas  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -15890,7 +15889,6 @@
+ #define HAVE_LIBBLAS 1
+ _ACEOF
+ 
+-  LIBS="-lblas $LIBS"
+ 
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for daxpy in -lblas" >&5
+@@ -15899,7 +15897,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lblas  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -15934,7 +15931,6 @@
+ #define HAVE_LIBBLAS 1
+ _ACEOF
+ 
+-  LIBS="-lblas $LIBS"
+ 
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DAXPY_ in -lblas" >&5
+@@ -15943,7 +15939,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lblas  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -15978,7 +15973,6 @@
+ #define HAVE_LIBBLAS 1
+ _ACEOF
+ 
+-  LIBS="-lblas $LIBS"
+ 
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DAXPY in -lblas" >&5
+@@ -15987,7 +15981,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lblas  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -16022,8 +16015,6 @@
+ #define HAVE_LIBBLAS 1
+ _ACEOF
+ 
+-  LIBS="-lblas $LIBS"
+-
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+ $as_echo "not found" >&6; }
+@@ -16035,7 +16026,6 @@
+ 
+ fi
+ 
+-  LDFLAGS="${LDFLAGS} -lblas"
+ else
+ 
+ $as_echo "#define INTERNAL_BLAS 1" >>confdefs.h
+@@ -16049,7 +16039,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-llapack  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -16084,7 +16073,6 @@
+ #define HAVE_LIBLAPACK 1
+ _ACEOF
+ 
+-  LIBS="-llapack $LIBS"
+ 
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dlarnv in -llapack" >&5
+@@ -16093,7 +16081,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-llapack  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -16128,8 +16115,6 @@
+ #define HAVE_LIBLAPACK 1
+ _ACEOF
+ 
+-  LIBS="-llapack $LIBS"
+-
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DLARNV_ in -llapack" >&5
+ $as_echo_n "checking for DLARNV_ in -llapack... " >&6; }
+@@ -16137,7 +16122,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-llapack  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -16172,8 +16156,6 @@
+ #define HAVE_LIBLAPACK 1
+ _ACEOF
+ 
+-  LIBS="-llapack $LIBS"
+-
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for DLARNV in -llapack" >&5
+ $as_echo_n "checking for DLARNV in -llapack... " >&6; }
+@@ -16181,7 +16163,6 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-llapack  $LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -16216,7 +16197,6 @@
+ #define HAVE_LIBLAPACK 1
+ _ACEOF
+ 
+-  LIBS="-llapack $LIBS"
+ 
+ else
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+@@ -16229,7 +16209,6 @@
+ 
+ fi
+ 
+-  LDFLAGS="${LDFLAGS} -llapack"
+ else
+ 
+ $as_echo "#define INTERNAL_LAPACK 1" >>confdefs.h

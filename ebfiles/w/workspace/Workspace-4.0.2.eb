@@ -1,0 +1,35 @@
+easyblock = 'Rpm'
+
+name = 'Workspace'
+version = '4.0.2'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'https://research.csiro.au/workspace/'
+description ="""A powerful, cross-platform workflow framework that enables collaboration and software reuse """ 
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+
+source_urls = ['https://ws.data.csiro.au/collections/csiro:11028/data/']
+sources = ['csiro.au-workspace-4.0.2-10354.x86_64.rpm']
+
+#install_cmd = 'tar -xvf '+ sources[0]  
+#install_cmd += '; cp -r '+ ndashv +' %(installdir)s'
+
+
+#dependencies = [
+#    ('perl', '5.22.1'),
+#]
+
+
+#sanity_check_paths = {
+    
+#    'files': [ndashv+"/bin/tmhmm", ndashv+"/bin/tmhmmformat.pl"],
+#    'dirs': []
+#}
+
+
+#modextrapaths = { 'PATH': [ndashv+'/bin', ndashv+'/lib']}
+
+moduleclass = 'tools'

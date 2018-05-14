@@ -1,0 +1,26 @@
+diff -Naur old-petsc/cmake/Modules/FindPETSc.cmake new-petsc/cmake/Modules/FindPETSc.cmake
+--- old-petsc/cmake/Modules/FindPETSc.cmake	2017-09-15 13:42:19.603576727 +1000
++++ new-petsc/cmake/Modules/FindPETSc.cmake	2017-09-25 14:27:04.779600713 +1000
+@@ -285,19 +285,12 @@
+ 
+     set(_PETSC_TEST_SOURCE "
+ static const char help[] = \"PETSc test program.\";
+-#include <petscts.h>
+ int main(int argc,char *argv[]) {
+-  PetscErrorCode ierr;
+-  TS ts;
+-
+-  ierr = PetscInitialize(&argc,&argv,0,help);${_PETSC_ERR_FUNC};
+-  ierr = TSCreate(PETSC_COMM_WORLD,&ts);${_PETSC_ERR_FUNC};
+-  ierr = TSSetFromOptions(ts);${_PETSC_ERR_FUNC};
+-  ierr = ${_PETSC_TSDestroy};${_PETSC_ERR_FUNC};
+-  ierr = PetscFinalize();${_PETSC_ERR_FUNC};
+-  return 0;
++  return (int)0;
+ }
+ ")
++    set(libraries "${libraries} -lmpi")
++    message(STATUS "libraries=${libraries}")
+     multipass_source_runs ("${includes}" "${libraries}" "${_PETSC_TEST_SOURCE}" ${runs} "${PETSC_LANGUAGE_BINDINGS}")
+     if (${${runs}})
+       set (PETSC_EXECUTABLE_RUNS "YES" CACHE BOOL

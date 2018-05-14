@@ -1,0 +1,22 @@
+name = 'ABAQUS'
+version = '2017.0'
+versionsuffix = '-linux-x86_64'
+
+homepage = 'http://www.simulia.com/products/abaqus_fea.html'
+description = "Finite Element Analysis software for modeling, visualization and best-in-class implicit and explicit dynamics FEA."
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+sources = ['%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.1-6.tar',
+	'%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.2-6.tar',
+	'%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.3-6.tar',
+	'%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.4-6.tar',
+	'%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.5-6.tar',
+	'%(name)s-%(version)s/%(version)s.AM_SIM_Abaqus_Extend.AllOS.6-6.tar']
+
+builddependencies = [('Java', '1.7.0_60')]
+
+preinstallopts = "export CHECK_DISK_SPACE=OFF && "
+
+osdependencies = [('libXm4')]
+moduleclass = 'cae'

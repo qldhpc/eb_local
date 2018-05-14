@@ -1,0 +1,42 @@
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'CmdCp'
+name = 'ls-dyna'
+version = 'r971mpp'
+
+homepage = 'http://www.lstc.com'
+description = """LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. The code's origins lie in highly nonlinear, transient dynamic finite element analysis using explicit time integration."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['mpp971_s_r6.0.0_71488_intel64_intel_rhel54_mpich126.tar.gz',
+           'mpp971_d_r6.0.0_71488_intel64_intel_rhel54_mpich126.tar.gz']
+
+cmds_map = [('mpp971*', 'gunzip -k %(source)s')]
+
+modaliases = {'lsdyna_s': 'mpp971_s_r6.0.0_71488_intel64_intel_rhel54_mpich126',
+              'lsdyna_d':  'mpp971_d_r6.0.0_71488_intel64_intel_rhel54_mpich126'}
+
+keepsymlinks = True
+
+osdependencies = ['gzip']
+
+files_to_copy = ['mpp971_s_r6.0.0_71488_intel64_intel_rhel54_mpich126',
+                 'mpp971_d_r6.0.0_71488_intel64_intel_rhel54_mpich126'] 
+
+sanity_check_paths = {
+    'files': ['mpp971_s_r6.0.0_71488_intel64_intel_rhel54_mpich126',
+              'mpp971_d_r6.0.0_71488_intel64_intel_rhel54_mpich126'], 
+    
+    'dirs': []
+}
+
+modextrapaths = {'PATH': ''}
+
+import os
+
+licserver = os.getenv('LSTC_LICENSE_SERVER', 'port@license.example.com')
+
+modextravars = { 'LSTC_LICENSE': 'network',
+		'LSTC_LICENSE_SERVER': licserver }

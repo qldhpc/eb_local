@@ -1,0 +1,12 @@
+diff -Naur old-chaste/python/pycml/pycml.py new-chaste/python/pycml/pycml.py
+--- old-chaste/python/pycml/pycml.py	2017-10-10 15:07:14.762460081 +1000
++++ new-chaste/python/pycml/pycml.py	2017-10-10 15:07:23.547729540 +1000
+@@ -62,7 +62,7 @@
+ 
+ # Pythonic XML bindings
+ import amara
+-from amara import binderytools as bt
++from amara import bindery as bt
+ 
+ from Ft.Xml import SplitQName
+ from xml.dom import Node # For nodeType values

@@ -1,0 +1,27 @@
+easyblock = 'Binary'
+
+name = 'MELTS'
+version = '31Jul2015'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://melts.ofm-research.org/index.html'
+description ="""MELTS is a software package designed to facilitate thermodynamic modeling of phase equilibria in magmatic systems. It provides the ability to compute equilibrium phase relations for igneous systems over the temperature range 500-2000 °C and the pressure range 0-2 GPa. """ 
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = [' http://melts.ofm-research.org/Melts-ftp/rhyolite-MELTS-RHEL-6.7-64bit.zip']
+sources = ['rhyolite-MELTS-RHEL-6.7-64bit.zip']
+
+install_cmd = 'unzip '+ sources[0]  
+install_cmd += '; cp  Melts-rhyolite-public %(installdir)s'
+
+
+
+sanity_check_paths = {
+    
+    'files': ["Melts-rhyolite-public"],
+    'dirs': []
+}
+
+moduleclass = 'phys'

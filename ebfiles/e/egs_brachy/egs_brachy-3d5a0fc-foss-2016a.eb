@@ -1,0 +1,37 @@
+easyblock = 'Binary'
+
+name = 'egs_brachy'
+version = '3d5a0fc'
+
+ndashv = '%(name)s-%(version)s'
+
+homepage = 'http://www.nrc-cnrc.gc.ca/eng/solutions/advisory/egsnrc_index.html'
+description ="""EGSnrc is a general-purpose software toolkit that can be applied to build Monte Carlo simulations of coupled electron-photon transport, for particle energies ranging from 1 keV to 10 GeV. The included BEAMnrc component includes the dose scoring utility DOSXYZnrc to estimate radiation dose in a voxel geometry, such as patient medical imaging data. It also includes data processing tools to analyze the beam characteristic in detail and generate radiation dose profiles. 
+
+egs_brachy is an egs++ application for rapid brachytherapy calculations for both photon and electron sources. The current documentation serves as a Technical Reference Manual to complement the egs_brachy user manual (https://clrp-code.github.io/egs_brachy/pdf/egs_brachy_user_manual.pdf) and our initial egs_brachy paper (https://clrp-code.github.io/egs_brachy/pdf/egs_brachy_paper2016.pdf): MJP Chamberland, REP Taylor, DWO Rogers, and RM Thomson, egs_brachy: a versatile and fast Monte Carlo code for brachytherapy, Phys. Med. Biol. 61, 8214-8231 (2016). Please cite this paper when egs_brachy is used in publications. """ 
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+
+#source_urls = ['https://github.com/nrc-cnrc/EGSnrc/archive/']
+sources = ['%(name)s-%(version)s.tar.gz']
+
+install_cmd = 'tar -xvf '+ sources[0]  
+install_cmd += '; cd %(builddir)s'
+install_cmd += "; echo $'\n \n \n \n \n \n \n \n \n \n \n \n no\n' |./HEN_HOUSE/scripts/configure"  
+install_cmd += '; cp -r HEN_HOUSE %(installdir)s'
+
+dependencies = [
+    ('grace', '5.1.25'),
+    ('motif', '2.3.5'),
+]
+
+
+sanity_check_paths = {
+    
+    'files': ["HEN_HOUSE/scripts/finalize_egs_foruser"],
+    'dirs': ["HEN_HOUSE/","HEN_HOUSE/bin/linux/"]
+}
+
+modextrapaths = { 'PATH': ['HEN_HOUSE/scripts/']}
+
+moduleclass = 'phys'

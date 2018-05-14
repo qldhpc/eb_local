@@ -1,0 +1,25 @@
+diff -Naur old/testsuite/sqc new/testsuite/sqc
+--- old/testsuite/sqc	2018-03-07 11:32:05.042295515 +1000
++++ new/testsuite/sqc	2018-03-08 10:12:37.002620690 +1000
+@@ -1,4 +1,4 @@
+-#! /usr/bin/perl
++#!/pkg/suse12/software/perl/5.22.1-foss-2016a/bin/perl
+ 
+ # sqc 
+ # quality control script for exercising code, regression testing, 
+@@ -176,12 +176,12 @@
+ # SRE, Tue Aug  6 11:16:39 2002
+ # CVS $Id: sqc,v 1.3 2003/01/05 23:40:57 eddy Exp $
+ 
+-require "getopts.pl";
+-require "importenv.pl";
++use Getopt::Std;
++use Perl4::CoreLibs;
+ 
+ # Parse our command line
+ #
+-&Getopts('mp:r:v');
++&getopts('mp:r:v');
+ if ($opt_m) { $do_memtest = 1;    }
+ if ($opt_p) { push @prepdirs, $opt_p; }
+ if ($opt_r) { push @olddirs,  $opt_r; }

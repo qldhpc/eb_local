@@ -1,0 +1,24 @@
+# Built with EasyBuild version 3.2.1 on 2017-08-25_14-28-25
+easyblock = 'CMakeMake'
+
+name = 'NNPack'
+version = '1.0'
+
+homepage = 'https://github.com/Maratyszcza/NNPACK'
+description = """Acceleration package for neural networks on multi-core CPUs."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+sources = ['master.zip']
+source_urls = ['https://github.com/Maratyszcza/NNPACK/archive']
+
+builddependencies = [('CMake', '3.10.0')]
+separate_build_dir = True
+
+sanity_check_paths = {
+    'files': ['test/fully-connected-inference-overfeat-test'],
+    'dirs': ['deps'],
+}
+
+moduleclass = 'lib'
+

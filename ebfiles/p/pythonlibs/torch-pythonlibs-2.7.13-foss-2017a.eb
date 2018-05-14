@@ -1,0 +1,55 @@
+
+easyblock = 'Bundle' 
+
+name = 'torch-pythonlibs'
+version = '2.7.13'
+
+homepage = 'http://python.org/'
+description = """Python is a programming language that lets you work more quickly and integrate your systems
+ more effectively."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+#source_urls = ['http://www.python.org/ftp/%(namelower)s/%(version)s/']
+#sources = [SOURCE_TGZ]
+
+# this is a bundle of Python packages
+exts_defaultclass = 'PythonPackage'
+
+# python needs bzip2 to build the bz2 package
+dependencies = [
+    ('Python','2.7.13','-foss'),
+    ('Pip','8.1.2'),
+]
+
+
+# order is important!
+# package versions updated May 28th 2015
+exts_list = [
+    ('simplegeneric', '0.8.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/s/simplegeneric/'],
+        'source_tmpl': '%(name)s-%(version)s.zip',
+    }),
+#Setting up python-backports-shutil-get-terminal-size (1.0.0-3) ...
+#Setting up python-ipython-genutils (0.1.0-2) ...
+#Setting up python-wcwidth (0.1.7+dfsg1-1) ...
+#Setting up python-pygments (2.2.0+dfsg-1) ...
+#Setting up python-ptyprocess (0.5.1-1) ...
+#Setting up python-pathlib2 (2.2.0+really2.1.0-1) ...
+#Setting up python-traitlets (4.3.1-1) ...
+#Setting up python-enum34 (1.1.6-1) ...
+#Setting up python-prompt-toolkit (1.0.9-1) ...
+#Setting up python-pexpect (4.2.1-1) ...
+#Setting up python-decorator (4.0.11-1) ...
+#Setting up python-pickleshare (0.7.4-1) ...
+#Setting up python-ipython (5.1.0-3) ...
+#Setting up ipython (5.1.0-3) ...
+]
+
+sanity_check_paths = {
+    'files':['lib/python2.7/site-packages/easy-install.pth', 'lib/python2.7/site-packages/simplegeneric-0.8.1-py2.7.egg', 'lib/python2.7/site-packages/site.py', 
+'lib/python2.7/site-packages/site.pyc'],
+    'dirs': ['lib'],
+}
+
+moduleclass = 'lang'

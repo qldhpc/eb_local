@@ -1,0 +1,24 @@
+easyblock = 'ConfigureMake'
+
+name = 'fontconfig'
+version = '2.12.6'
+
+homepage = 'http://www.freedesktop.org/software/fontconfig'
+description = """Fontconfig is a library designed to provide system-wide font configuration, customization and application access."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+source_urls = ['http://www.freedesktop.org/software/fontconfig/release/']
+sources = [SOURCE_TAR_GZ]
+
+dependencies = [
+    ('expat', '2.2.1'),
+    ('freetype', '2.7.1'),
+]
+
+# use same binutils version that was used when building GCCcore toolchain
+# builddependencies = [('binutils', '2.27', '', True)]
+
+configopts = '--disable-docs '
+
+moduleclass = 'vis'

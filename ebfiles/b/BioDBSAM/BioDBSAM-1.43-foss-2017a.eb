@@ -1,0 +1,77 @@
+easyblock = 'Bundle'
+
+name = 'BioDBSAM'
+version = '1.43'
+perlver = '5.26.0'
+
+homepage = 'https://metacpan.org'
+description = """Read SAM/BAM database files"""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+
+# this is a bundle of Perl modules
+exts_defaultclass = 'PerlModule'
+exts_filter = ("perldoc -lm %(ext_name)s ", "")
+
+dependencies = [
+    ('Perl', perlver, '-bare'),
+    ('libgd','2.2.4'),
+    ('db','6.2.32'),
+    ('Perl_DB_File','1.840'),
+    ('Perl_Test','0.32'),
+    ('Perl_Compare','3.0.0'),
+    ('Perl_LibXML','2.0129'),
+    ('htslib','1.4.1'),
+    ('samtools','1.5'),
+]
+
+exts_list = [
+    ('Module::Build', '0.4224', {
+        'source_tmpl': 'Module-Build-0.4224.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/L/LE/LEONT'],
+    }),
+    ('ExtUtils::PkgConfig', '1.16', {
+        'source_tmpl': 'ExtUtils-PkgConfig-1.16.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/X/XA/XAOC'],
+    }),
+    ('List::MoreUtils', '0.425', {
+        'source_tmpl': 'List-MoreUtils-0.425.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/R/RE/REHSACK'],
+    }),
+    ('Bio::Phylo', '0.58', {
+        'source_tmpl': 'Bio-Phylo-0.58.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/R/RV/RVOSA'],
+    }),
+    ('GD', '2.66', {
+        'source_tmpl': 'GD-2.66.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/R/RU/RURBAN'],
+    }),
+    ('Bio::ASN1::EntrezGene', '1.72', {
+        'source_tmpl': 'Bio-ASN1-EntrezGene-1.72.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/C/CJ/CJFIELDS'],
+    }),
+    ('LWP::UserAgent', '6.27', {
+        'source_tmpl': 'libwww-perl-6.27.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/O/OA/OALDERS'],
+    }),
+    ('Bio::Root::Version', '1.007001', {
+        'source_tmpl': 'BioPerl-1.007001.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/C/CJ/CJFIELDS'],
+    }),
+    ('Bio::DB::Sam', '1.43', {
+        'source_tmpl': 'Bio-SamTools-1.43.tar.gz',
+        'source_urls': ['http://search.cpan.org/CPAN/authors/id/L/LD/LDS'],
+    }),
+]
+
+modextrapaths = {
+    'PERL5LIB': 'lib/site_perl/%(perlver)s/'
+}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib/site_perl/%(perlver)s'],
+}
+
+moduleclass = 'lang'
+

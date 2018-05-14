@@ -1,0 +1,19 @@
+easyblock = 'ConfigureMake'
+name = 'Amber'
+version = '17'
+versionsuffix = '-cuda-p100'
+
+homepage = 'http://ambermd.org/amber.html'
+description = """Amber (originally Assisted Model Building with Energy
+ Refinement) is software for performing molecular dynamics and structure
+ prediction."""
+
+toolchain = {'name': 'intel', 'version': '2017a'}
+configopts = "-openmp -cuda"
+sources = [
+    'AmberTools%(version)s.tar.bz2'
+]
+dependencies = [
+    ('cuda','9.0.176','',True),
+]
+moduleclass = 'chem'

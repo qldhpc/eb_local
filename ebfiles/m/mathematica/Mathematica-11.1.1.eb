@@ -1,0 +1,28 @@
+# Built with EasyBuild version 2.9.0 on 2016-11-16_16-21-00
+##
+# This file is an EasyBuild reciPY as per https://github.com/hpcugent/easybuild
+#
+# Copyright:: Copyright 2012-2014 Uni.Lu/LCSB, NTUA
+# Authors::   Maxime Schmitt <maxime.schmitt@telecom-bretagne.eu>, Fotis Georgatos <fotis@cern.ch>
+# License::   MIT/GPL
+# $Id$
+#
+##
+
+
+name = 'Mathematica'
+version = '11.1.1'
+
+homepage = 'http://www.wolfram.com/mathematica'
+description = """Mathematica is a computational software program used in many scientific, engineering, mathematical
+and computing fields."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+sources = ['Mathematica_%(version)s_LINUX.sh']
+
+license_server = ('mathematica.qut.edu.au', '')
+
+sanity_check_commands = [('mathematica', '--version')]
+
+moduleclass = 'math'

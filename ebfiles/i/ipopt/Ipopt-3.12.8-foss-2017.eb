@@ -1,0 +1,22 @@
+easyblock ='ConfigureMake'
+
+name = 'Ipopt'
+version = '3.12.8'
+
+homepage = 'https://projects.coin-or.org/Ipopt'
+description = """Ipopt (Interior Point OPTimizer, pronounced eye-pea-Opt) is a software package for large-scale nonlinear optimization."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+source_urls = ['https://www.coin-or.org/download/source/Ipopt/']
+sources = [name+'-'+version+'.tgz']
+
+configopts =' --enable-gnu-packages  -with-blas="-L$EBROOTOPENBLAS/lib -lopenblas"'
+
+#buildopts =''
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["lib","include","share"],
+}
+
+moduleclass = 'tools'

@@ -1,0 +1,73 @@
+easyblock = 'Bundle'
+
+name = 'Rlibs'
+version = '3.3.1'
+versionsuffix = '-R-%(version)s'
+
+homepage = 'http://www.r-project.org/'
+description = """R is a free software environment for statistical computing and graphics."""
+
+toolchain = {'name': 'intel', 'version': '2016b'}
+
+# these are extensions for R
+exts_defaultclass = 'RPackage'
+exts_filter = ("R -q --no-save", "library(%(ext_name)s)")
+
+name_tmpl = '%(name)s_%(version)s.tar.gz'
+
+dependencies = [
+    ('R', version),
+    ('cURL', '7.49.1'),
+   # ('libxml2', '2.9.4'),
+]
+
+### TODO: how to do the following in EasyBuild?
+# to create a list of CRAN packages that haven't been installed
+# and install them:
+# load the R module and start R
+#   > options(gsubfn.engine = "R")
+#   > options(menu.graphics=FALSE)
+#   # get available packages (note select Canberra mirror - ANU)
+#   > available.packages()[,1] -> avail
+#   # number of packages available
+#   > length(avail)
+#   # get installed packages
+#   > packs <- installed.packages()
+#   # number of packages already installed
+#   > dim(packs)[1]
+#   # get names of installed packages
+#   > excl <- names(packs[,'Package'])
+#   # create string of packages to install
+#   > inst <- avail[!avail %in% excl]
+#   # install all missing packages
+#   > install.packages(inst)
+#
+
+
+ext_options = {
+    'source_urls': [
+        'http://cran.r-project.org/src/contrib/Archive/%(name)s',  # package archive
+        'http://cran.r-project.org/src/contrib/',  # current version of packages
+        'http://cran.freestatistics.org/src/contrib',  # mirror alternative for current packages
+    ],
+    'source_tmpl': name_tmpl,
+}
+
+
+# !! order of packages is important !!
+exts_list = [
+    ('RCurl', '1.95-4.5', ext_options),  # requires cURL
+    ('XML', '3.98-1.1', ext_options),  # requires libxml2
+    ('doBy', '4.5-15', ext_options),  # requires libxml2
+    ('EPGLM', '1.1.2', ext_options),  # requires libxml2
+    # etc
+]
+
+modextrapaths = {'R_LIBS': ''}
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['RCurl', 'XML','doBy'],
+}
+
+moduleclass = 'lang'

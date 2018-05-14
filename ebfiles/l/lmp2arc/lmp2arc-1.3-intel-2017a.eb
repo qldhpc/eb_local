@@ -1,0 +1,38 @@
+name = 'lmp2arc'
+version = '1.3'
+
+homepage = 'https://github.com/lammps/lammps'
+description = """This program converts a contiguous set of LAMMPS dump (position) files 
+to a MSI .arc file using a .car file as the template. This enables one to
+visualize a LAMMPS trajectory using Insight II."""
+
+toolchain = {'name': 'intel', 'version': '2017a'}
+
+source_urls = ['https://github.com/lammps/tools/lmp2arc/archive/']
+sources = ['%(version)s.tar.gz']
+
+pkgs = ['standard', '^gpu', '^kokkos', 'atc', 'colvars', 'lb', 'misc', 'phonon', 'reaxc', 'sph', 'intel', 'molfile', 'voronoi', 'kim', 'poems', 'reax', 'meam']
+opts = ['-jpg', '-fft mkl', '-m mpi', '-cc mpicxx', '-mpi mpi',]
+lib_opts = ['-atc make=icc lammps=eb', '-meam make=ifort lammps=eb', '-poems make=icc', '-reax make=ifort lammps=eb', '-colvars make=g++', '-intel cpu',]
+actions  = ['lib-meam', 'lib-poems', 'lib-reax', 'lib-atc', 'lib-colvars', ]
+lib_custom_links = {
+'reax':{'SYSLIB': '-lifcore -lsvml -liompstubs5 -limf', 'SYSINC': ' ', 'SYSPATH': '-L/pkg/suse12/software/icc/2015.3.187-gnu-4.9.3-2.25/composer_xe_2015.3.187/compiler/lib/intel64/'},	
+'atc':{'SYSLIB': ' -lmkl_intel_thread -lmkl_core', 'SYSPATH': '-L/pkg/suse12/software/imkl/11.2.3.187-iimpi-7.3.5-gnu-4.9.3-2.25/mkl/lib/intel64', 'SYSINC': ' '}, 
+'meam':{'SYSLIB': '-lifcore -lsvml -liompstubs5 -limf', 'SYSPATH': '-L/pkg/suse12/software/icc/2015.3.187-gnu-4.9.3-2.25/composer_xe_2015.3.187/compiler/lib/intel64/', 'SYSINC': ' '}}
+rename ='lyra'
+flags = ['-flags LIB add 4 liomp5 lpthread lifcoremt lirc']
+
+
+#install_cmd ="%(builddir)s/src/Make.py -v -j 32 -jpg -fft mkl -p standard ^gpu ^kokkos atc colvars lb misc phonon reaxc sph intel molfile voronoi kim poems reax meam -atc make=icc lammps=eb -meam make=ifort lammps=eb -poems make=icc -reax make=ifort lammps=eb -colvars make=g++ -intel cpu -m mpi -cc mpicxx -mpi mpi -o lyra -flags LIB add 4 liomp5 lpthread lifcoremt lirc -a lib-meam lib-poems lib-reax lib-atc lib-colvars file exe"
+
+dependencies = [
+    ('mpich','3.2'),
+    ('openkim', 'v1.9.2'),
+    ('Voro++','0.4.6'),
+    ('libjpeg-turbo','1.5.1'),
+]
+sanity_check_paths = {
+    'files': ['bin/lmp_mpi'],
+    'dirs': ['bin'],
+}
+moduleclass = 'phys'

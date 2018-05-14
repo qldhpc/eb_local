@@ -1,0 +1,50 @@
+easyblock = 'CMakeMake'
+
+name = 'mechsys'
+version = '8d61d5e2e194'
+homepage = 'http://mechsys.nongnu.org'
+description = """MechSys is a programming library for the implementation 
+of simulation tools in mechanics."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+source_urls = ['http://hg.savannah.gnu.org/hgweb/mechsys/archive/']
+sources = ['tip.tar.bz2']
+configopts = "-DA_USE_HDF5=ON "
+" -DHDF5_INCLUDE_SEARCH_PATH=/pkg/suse12/software/hdf5/1.8.15-foss-2017a/include/ "
+" -DHDF5_LIBRARY_SEARCH_PATH=/pkg/suse12/software/hdf5/1.8.15-foss-2017a/lib/ "
+" -DHDF5_H=/pkg/suse12/software/hdf5/1.8.15-foss-2017a/include/hdf5.h "
+" -DHDF5_HL_H=/pkg/suse12/software/hdf5/1.8.15-foss-2017a/include/hdf5_hl.h "
+" -DHDF5_HL=/pkg/suse12/software/hdf5/1.8.15-foss-2017a/lib/libhdf5_hl.so "
+" -Wnoparenthesis"
+patches = [('modules.patch',1)]
+# versions from installdeps.sh
+# VER_BLITZ=0.9
+# VER_TRIANGLE=1.6
+# VER_TETGEN=1.4.3
+# VER_VORO=0.4.5
+# VER_IGRAPH=0.5.4
+# VER_GSL=2.1
+# VER_BOOST=1_59_0
+# VER_LAPACK=3.5.0
+# VER_HDF5=1.8.15-patch1
+# VER_SZIP=2.1
+
+dependencies = [
+    ('blitz++','0.9'),
+    ('libxml2','2.9.4'),
+    ('gsl','2.3'),
+    ('boost','1.59.0'),
+    ('mpich','3.2'),
+    ('Python','2.7.13','-foss'),
+    ('Voro++','0.4.6'),
+    ('igraph','0.5.4'),
+    ('vtk','8.0.1'),
+    ('hdf5','1.8.15'),
+    ('triangle','1.6'),
+    ('szip','2.1.1'),
+    ('tetgen','1.4.3'),
+]
+builddependencies = [('CMake', '3.7.2')]
+moduleclass = 'cae'
+#download_and_compile igraph
+

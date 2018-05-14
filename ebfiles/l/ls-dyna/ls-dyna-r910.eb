@@ -1,0 +1,52 @@
+# Built with EasyBuild version 3.2.1 on 2017-09-11_17-07-08
+# Built with EasyBuild version 3.0.1 on 2016-12-09_15-40-38
+# Author: Ashley Wright
+# Email: a2.wright@qut.edu.au
+
+easyblock = 'CmdCp'
+name = 'ls-dyna'
+version = 'r910'
+
+homepage = 'http://www.lstc.com'
+description = """LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. The code's origins lie in highly nonlinear, transient dynamic finite element analysis using explicit time integration."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+# ls-dyna_mpp_d_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi.tar.gz
+sources = ['ls-dyna_mpp_d_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi.tar.gz',
+           'ls-dyna_mpp_s_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi.tar.gz',
+           'ls-dyna_mpp_mpilibs.tar.gz']
+
+cmds_map = [('ls-dyna_mpp.*', 'gunzip -k %(source)s')]
+
+modaliases = {'lsdyna_d': 'ls-dyna_mpp_d_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi',
+              'lsdyna_s': 'ls-dyna_mpp_s_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi'}
+
+keepsymlinks = True
+
+dependencies = [
+    ('ansys','18.1','-testonly'),
+]
+
+osdependencies = ['gzip']
+
+files_to_copy = ['ls-dyna_mpp_d_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi', 
+              'ls-dyna_mpp_s_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi',
+              'mpilibs']
+
+sanity_check_paths = {
+    'files': ['ls-dyna_mpp_d_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi',
+              'ls-dyna_mpp_s_r7_1_1_88920_x64_suse111_open64455_avx_platformmpi'],
+    'dirs': ['mpilibs']
+}
+
+modextrapaths = {'LD_LIBRARY_PATH': ['mpilibs'] }
+
+import os
+
+licserver = os.getenv('LSTC_LICENSE_SERVER', 'port@license.example.com')
+
+modextravars = { 'LSTC_LICENSE': 'network',
+		'LSTC_LICENSE_SERVER': licserver }
+
+
+moduleclass = 'cae'

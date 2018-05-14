@@ -3,7 +3,7 @@ easyblock = 'ConfigureMake'
 name = 'OpenBLAS'
 version = '0.2.19'
 
-lapackver = '3.7.0'
+lapackver = '3.8.0'
 versionsuffix = '-LAPACK-%s' % lapackver
 
 homepage = 'http://xianyi.github.com/OpenBLAS/'

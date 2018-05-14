@@ -57,7 +57,7 @@ class EB_XILINX(Binary):
 		txt = '\n'.join([
 		"Edition=Vivado HL Design Edition",
 		"Destination=%s" % self.installdir,
-		"Modules=Zynq UltraScale+ MPSoC:1,Software Development Kit (SDK):0,DocNav:1,Spartan-7:0,Virtex-7:1,Kintex UltraScale:1,Kintex-7:1,Virtex UltraScale:1,Virtex UltraScale+:1,Zynq-7000:1,Kintex UltraScale+:1,Artix-7:1",
+		"Modules=Zynq UltraScale+ MPSoC:1,Software Development Kit (SDK):1,DocNav:1,Spartan-7:0,Virtex-7:1,Kintex UltraScale:1,Kintex-7:1,Virtex UltraScale:1,Virtex UltraScale+:1,Zynq-7000:1,Kintex UltraScale+:1,Artix-7:1",
 		"InstallOptions=Acquire or Manage a License Key:0,Enable WebTalk for SDK to send usage statistics to Xilinx:0,Enable WebTalk for Vivado to send usage statistics to Xilinx (Always enabled for WebPACK license):0",
 		"CreateProgramGroupShortcuts=0",
 		"ProgramGroupFolder=Xilinx Design Tools",
@@ -75,15 +75,15 @@ class EB_XILINX(Binary):
         """Install XILINX using 'setup'."""
         os.chdir(self.builddir)
         if self.cfg['install_cmd'] is None:
-            self.cfg['install_cmd'] = "%s/%s/xsetup " % (self.builddir,self.version)
+            self.cfg['install_cmd'] = "%s/%s_%s/xsetup " % (self.builddir,self.name,self.version)
             self.cfg['install_cmd'] += "--agree XilinxEULA,3rdPartyEULA,WebTalkTerms --batch Install --config %s" % (self.setupconfigfile)
         super(EB_XILINX, self).install_step()
 
     def sanity_check_step(self):
         """Custom sanity check for XILINX."""
         custom_paths = {
-		'files': ["Vivado/%s/bin/vivado" %(self.version),"Vivado_HLS/%s/bin/vivado_hls"%(self.version)],
-		'dirs': ["Vivado","Vivado_HLS"],
+		'files': ["Vivado/%s/bin/vivado" %(self.version[:6])],
+		'dirs': ["Vivado",],
         }
         super(EB_XILINX, self).sanity_check_step(custom_paths=custom_paths)   
       
@@ -92,8 +92,8 @@ class EB_XILINX(Binary):
         """Custom extra module file entries for XILINX"""
         guesses = super(EB_XILINX, self).make_module_req_guess()
         dirs = [
-            "Vivado/%s/bin" % (self.version),
-            "Vivado_HLS/%s/bin" % (self.version),
+            "Vivado/%s/bin" % (self.version[:5]),
+            "Vivado_HLS/%s/bin" % (self.version[:5]),
         ]
         guesses.update({"PATH": [dir for dir in dirs]})
         return guesses

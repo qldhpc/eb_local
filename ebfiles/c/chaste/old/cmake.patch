@@ -1,0 +1,12 @@
+diff -Naur old-cmake/CMakeLists.txt new-cmake/CMakeLists.txt
+--- old-cmake/CMakeLists.txt	2017-09-06 10:29:44.831338777 +1000
++++ new-cmake/CMakeLists.txt	2017-09-06 10:29:50.659569420 +1000
+@@ -1,8 +1,6 @@
+ cmake_minimum_required(VERSION 2.8.10)
+ 
+ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
+-include(EnsureOutOfSourceBuild)
+-Ensure_Out_Of_Source_Build()
+ include(CheckIncludeFile)
+ 
+ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/overrides.cmake)

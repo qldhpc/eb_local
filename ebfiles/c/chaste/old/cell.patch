@@ -1,0 +1,12 @@
+diff -Naur old-cell/cell_based/src/cell/cycle/CellCycleModelOdeSolver.hpp new-cell/cell_based/src/cell/cycle/CellCycleModelOdeSolver.hpp
+--- old-cell/cell_based/src/cell/cycle/CellCycleModelOdeSolver.hpp	2017-09-14 16:31:43.632017909 +1000
++++ new-cell/cell_based/src/cell/cycle/CellCycleModelOdeSolver.hpp	2017-09-14 16:33:37.080446195 +1000
+@@ -130,7 +130,7 @@
+ template<class CELL_CYCLE_MODEL, class ODE_SOLVER>
+ bool CellCycleModelOdeSolver<CELL_CYCLE_MODEL, ODE_SOLVER>::IsSetUp()
+ {
+-    return mpOdeSolver;
++    return mpOdeSolver != NULL;
+ }
+ 
+ template<class CELL_CYCLE_MODEL, class ODE_SOLVER>

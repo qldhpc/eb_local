@@ -1,0 +1,20 @@
+easyblock = 'ConfigureMake'
+
+name = 'mpich'
+version = '3.2'
+
+homepage = 'http://http://www.mpich.org//'
+description = """MPICH is a high performance and widely portable implementation of the Message Passing 
+Interface (MPI) standard."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+preconfigopts = 'export FC=$F90 FCFLAGS=$F90FLAGS; unset F90 F90FLAGS;' 
+sources = ['mpich-%(version)s.tar.gz']
+source_urls = ['http://www.mpich.org/static/downloads/%(version)s/']
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ['lib'],
+}
+
+moduleclass = 'lib'

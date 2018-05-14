@@ -1,0 +1,6 @@
+
+from the source dir
+
+./INSTALL -silent -install_dir <install dir> -licserverinfo 1055:ansys-lics.qut.edu.au
+
+"/pkg/suse12/software/ansys/16.2/shared_files/licensing/lic_admin/anslic_admin_silent"  -silentinstallclient -release "16.2" -licserverinfo 1055:ansys-lics.qut.edu.au -lang en-us

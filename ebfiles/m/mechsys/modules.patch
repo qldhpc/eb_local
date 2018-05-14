@@ -1,0 +1,222 @@
+diff -Naur old-modules/CMakeLists.txt new-modules/CMakeLists.txt
+--- old-modules/CMakeLists.txt	2017-11-21 12:27:16.268266906 +1000
++++ new-modules/CMakeLists.txt	2017-11-21 12:33:00.789953580 +1000
+@@ -18,14 +18,14 @@
+ 
+ PROJECT                (MECHSYS)
+ CMAKE_MINIMUM_REQUIRED (VERSION 3.2)
+-ENABLE_TESTING         ()
++#ENABLE_TESTING         ()
+ 
+ # Features                                                                         
+-OPTION(A_WITH_TLBM          "Compile LBM tests"              ON )
+-OPTION(A_WITH_TEMLBM        "Compile EMLBM tests"            ON )
+-OPTION(A_WITH_TADLBM        "Compile ADLBM tests"            ON )
+-OPTION(A_WITH_TFLBM         "Compile FLBM  tests"            ON )
+-OPTION(A_WITH_TDEM          "Compile DEM tests"              ON )
++#OPTION(A_WITH_TLBM          "Compile LBM tests"              ON )
++#OPTION(A_WITH_TEMLBM        "Compile EMLBM tests"            ON )
++#OPTION(A_WITH_TADLBM        "Compile ADLBM tests"            ON )
++#OPTION(A_WITH_TFLBM         "Compile FLBM  tests"            ON )
++#OPTION(A_WITH_TDEM          "Compile DEM tests"              ON )
+ #OPTION(A_WITH_TSPH          "Compile SPH tests"              OFF)
+ 
+ # needed when building Debian package
+diff -Naur old-modules/Modules/FindDEPSFL.cmake new-modules/Modules/FindDEPSFL.cmake
+--- old-modules/Modules/FindDEPSFL.cmake	2017-11-20 14:36:19.112013585 +1000
++++ new-modules/Modules/FindDEPSFL.cmake	2017-11-20 15:48:43.166854635 +1000
+@@ -133,7 +133,7 @@
+ #INCLUDE (${MECHSYS_SOURCE_DIR}/Modules/FindSPHASH.cmake   ) # 22
+ #INCLUDE (${MECHSYS_SOURCE_DIR}/Modules/FindTENSORS.cmake  ) # 23
+ INCLUDE (${MECHSYS_SOURCE_DIR}/Modules/FindIGRAPH.cmake   ) # 24
+-INCLUDE (FindThreads)                                       # 25
++#INCLUDE (FindThreads)                                       # 25
+ INCLUDE (FindOpenMP )                                       # 26
+ 
+ # 1
+@@ -378,10 +378,12 @@
+     #SET (LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
+     #ADD_DEFINITIONS (-DUSE_THREAD)
+     #SET (LFLAGS "${LFLAGS} -pthread")
++    #MESSAGE(WARNING "Found pthread lib!!")
+ #else(Threads_FOUND AND A_USE_THREAD)
+     #if(A_USE_THREAD)
+         #SET (MISSING "${MISSING} (p)Threads")
+     #endif(A_USE_THREAD)
++    #MESSAGE(WARNING "Failed to find pthread lib!!")
+ #endif(Threads_FOUND AND A_USE_THREAD)
+ #
+ # 26
+diff -Naur old-modules/Modules/FindHDF5.cmake new-modules/Modules/FindHDF5.cmake
+--- old-modules/Modules/FindHDF5.cmake	2017-09-20 14:13:57.126390830 +1000
++++ new-modules/Modules/FindHDF5.cmake	2017-09-21 10:23:31.650331679 +1000
+@@ -19,52 +19,30 @@
+ #####################################################################################
+ 
+ SET(HDF5_INCLUDE_SEARCH_PATH
+-    $ENV{MECHSYS_ROOT}/pkg/szip-2.1/src
+-    $ENV{MECHSYS_ROOT}/pkg/hdf5-1.8.15-patch1/src
+-    $ENV{MECHSYS_ROOT}/pkg/hdf5-1.8.15-patch1/hl/src
+-    $ENV{HOME}/pkg/szip-2.1/src
+-    $ENV{HOME}/pkg/hdf5-1.8.15-patch1/src
+-    $ENV{HOME}/pkg/hdf5-1.8.15-patch1/hl/src
+-#   $ENV{HOME}/pkg/zlib-1.2.5
++    $ENV{EBROOTSZIP}/include
++    $ENV{EBROOTHDF5}/include
+     )
+-  #/usr/include)
+ 
+ SET(HDF5_LIBRARY_SEARCH_PATH
+-    $ENV{MECHSYS_ROOT}/pkg/szip-2.1/src/.libs
+-    $ENV{MECHSYS_ROOT}/pkg/hdf5-1.8.15-patch1/src/.libs
+-    $ENV{MECHSYS_ROOT}/pkg/hdf5-1.8.15-patch1/hl/src/.libs
+-    $ENV{HOME}/pkg/szip-2.1/src/.libs
+-    $ENV{HOME}/pkg/hdf5-1.8.15-patch1/src/.libs
+-    $ENV{HOME}/pkg/hdf5-1.8.15-patch1/hl/src/.libs
+-#   $ENV{HOME}/pkg/zlib-1.2.5
++    $ENV{EBROOTSZIP}/lib
++    $ENV{EBROOTHDF5}/lib
+     )
+-  #/usr/lib)
+ 
+-#MESSAGE(${HDF5_HL})
+-
+-FIND_PATH(HDF5_H    hdf5.h    ${HDF5_INCLUDE_SEARCH_PATH})
+-FIND_PATH(HDF5_HL_H hdf5_hl.h ${HDF5_INCLUDE_SEARCH_PATH})
+-
+-
+-#MESSAGE(${HDF5_LIBRARY_SEARCH_PATH})
++FIND_PATH(HDF5_H    hdf5.h    "${HDF5_INCLUDE_SEARCH_PATH}")
++FIND_PATH(HDF5_HL_H hdf5_hl.h "${HDF5_INCLUDE_SEARCH_PATH}")
+ 
+ FIND_LIBRARY(SZ      NAMES sz      PATHS ${HDF5_LIBRARY_SEARCH_PATH})
+ FIND_LIBRARY(HDF5    NAMES hdf5    PATHS ${HDF5_LIBRARY_SEARCH_PATH})
+ FIND_LIBRARY(HDF5_HL NAMES hdf5_hl PATHS ${HDF5_LIBRARY_SEARCH_PATH})
+-#FIND_LIBRARY(LZ      NAMES z       PATHS ${HDF5_LIBRARY_SEARCH_PATH})
+ 
+ SET(HDF5_FOUND 1)
+-#FOREACH(var LZ SZ HDF5_H HDF5_HL_H HDF5 HDF5_HL)
+ FOREACH(var SZ HDF5_H HDF5_HL_H HDF5 HDF5_HL)
+   IF(NOT ${var})
+-	SET(HDF5_FOUND 0)
++        SET(HDF5_FOUND 0)
+   ENDIF(NOT ${var})
+ ENDFOREACH(var)
+ 
+ IF(HDF5_FOUND)
+   SET(HDF5_INCLUDE_DIR  ${HDF5_H} ${HDF5_HL_H})
+-#  SET(HDF5_LIBRARIES    ${HDF5_HL} ${HDF5} ${LZ} ${SZ})
+   SET(HDF5_LIBRARIES    ${HDF5_HL} ${HDF5} ${SZ})
+ ENDIF(HDF5_FOUND)
+-
+-#MESSAGE(${HDF5_HL})
+diff -Naur old-modules/Modules/FindIGRAPH.cmake new-modules/Modules/FindIGRAPH.cmake
+--- old-modules/Modules/FindIGRAPH.cmake	2017-11-17 16:01:12.287052413 +1000
++++ new-modules/Modules/FindIGRAPH.cmake	2017-11-20 09:59:25.008155789 +1000
+@@ -19,21 +19,19 @@
+ #####################################################################################
+ 
+ SET(IGRAPH_INCLUDE_SEARCH_PATH
+-  $ENV{MECHSYS_ROOT}/pkg/igraph-0.5.4/include
+-  $ENV{HOME}/pkg/igraph-0.5.4/include
++  /pkg/suse12/software/igraph/0.5.4-foss-2017a/include/igraph
+   /usr/include
+   /usr/local/include)
+ 
+ SET(IGRAPH_LIBRARY_SEARCH_PATH
+-  $ENV{MECHSYS_ROOT}/pkg/igraph-0.5.4/src/.libs
+-  $ENV{HOME}/pkg/igraph-0.5.4/src/.libs
++  /pkg/suse12/software/igraph/0.5.4-foss-2017a/lib
+   /usr/lib
+   /usr/local/lib)
+ 
+-FIND_PATH(IGRAPH_IGRAPH_H igraph.h ${IGRAPH_INCLUDE_SEARCH_PATH})
++FIND_PATH(IGRAPH_IGRAPH_H NAME igraph.h PATHS ${IGRAPH_INCLUDE_SEARCH_PATH})
+ 
+-FIND_LIBRARY(IGRAPH_IGRAPH NAMES igraph PATHS ${IGRAPH_LIBRARY_SEARCH_PATH})
+-FIND_LIBRARY(IGRAPH_DLAMCH NAMES dlamch PATHS ${IGRAPH_LIBRARY_SEARCH_PATH})
++FIND_LIBRARY(IGRAPH_IGRAPH NAME igraph PATHS ${IGRAPH_LIBRARY_SEARCH_PATH})
++FIND_LIBRARY(IGRAPH_DLAMCH NAME dlamch PATHS ${IGRAPH_LIBRARY_SEARCH_PATH})
+ 
+ SET(IGRAPH_FOUND 1)
+ FOREACH(var IGRAPH_IGRAPH_H IGRAPH_IGRAPH IGRAPH_DLAMCH)
+@@ -43,6 +41,9 @@
+ ENDFOREACH(var)
+ 
+ IF(IGRAPH_FOUND)
++  MESSAGE(WARNING "Found IGraph!!")
+   SET(IGRAPH_INCLUDE_DIRS ${IGRAPH_IGRAPH_H})
+   SET(IGRAPH_LIBRARIES    ${IGRAPH_IGRAPH} ${IGRAPH_DLAMCH})
++ELSE(IGRAPH_FOUND)
++  MESSAGE(WARNING "Couldn't find IGraph!!" " IGRAPH_H=" ${IGRAPH_IGRAPH_H} " IGRAPH_LIB=" ${IGRAPH_IGRAPH} " IGRAPH_DLAMCH=" ${IGRAPH_DLAMCH})
+ ENDIF(IGRAPH_FOUND)
+diff -Naur old-modules/Modules/FindTETGEN.cmake new-modules/Modules/FindTETGEN.cmake
+--- old-modules/Modules/FindTETGEN.cmake	2017-09-20 14:45:41.706435079 +1000
++++ new-modules/Modules/FindTETGEN.cmake	2017-11-20 10:23:28.296536186 +1000
+@@ -19,19 +19,13 @@
+ #####################################################################################
+ 
+ SET(TETGEN_INCLUDE_SEARCH_PATH
+-  $ENV{MECHSYS_ROOT}/pkg/tetgen1.4.3
+-  $ENV{HOME}/pkg/tetgen1.4.3
+-  /usr/include
+-  /usr/local/include)
++  $ENV{EBROOTTETGEN}/include)
+ 
+ SET(TETGEN_LIBRARY_SEARCH_PATH
+-  $ENV{MECHSYS_ROOT}/pkg/tetgen1.4.3
+-  $ENV{HOME}/pkg/tetgen1.4.3
+-  /usr/lib
+-  /usr/local/lib)
++  $ENV{EBROOTTETGEN}/lib)
+ 
+ FIND_PATH(TETGEN_TETGEN_H tetgen.h ${TETGEN_INCLUDE_SEARCH_PATH})
+-FIND_LIBRARY(TETGEN_TETGEN NAMES tetgen PATHS ${TETGEN_LIBRARY_SEARCH_PATH})
++FIND_LIBRARY(TETGEN_TETGEN NAMES tet PATHS ${TETGEN_LIBRARY_SEARCH_PATH})
+ 
+ SET(TETGEN_FOUND 1)
+ FOREACH(var TETGEN_TETGEN_H TETGEN_TETGEN)
+@@ -41,6 +35,9 @@
+ ENDFOREACH(var)
+ 
+ IF(TETGEN_FOUND)
++  MESSAGE(WARNING "Found Tetgen!!")
+   SET(TETGEN_INCLUDE_DIRS ${TETGEN_TETGEN_H})
+   SET(TETGEN_LIBRARIES    ${TETGEN_TETGEN})
++ELSE(TETGEN_FOUND)
++  MESSAGE("Couldn't find tetgen!! TETGEN_H=" ${TETGEN_TETGEN_H} " TETGEN_LIB=" ${TETGEN_TETGEN})
+ ENDIF(TETGEN_FOUND)
+diff -Naur old-modules/Modules/FindVORO.cmake new-modules/Modules/FindVORO.cmake
+--- old-modules/Modules/FindVORO.cmake	2017-09-20 14:44:59.132758888 +1000
++++ new-modules/Modules/FindVORO.cmake	2017-11-20 10:10:55.807147467 +1000
+@@ -19,18 +19,10 @@
+ #####################################################################################
+ 
+ SET(VORO_INCLUDE_SEARCH_PATH
+-  #$ENV{MECHSYS_ROOT}/pkg/voro++0.3.1
+-  #$ENV{HOME}/pkg/voro++0.3.1
+-  $ENV{MECHSYS_ROOT}/pkg/voro++-0.4.5/src
+-  $ENV{HOME}/pkg/voro++-0.4.5/src
+-  /usr/include
+-  /usr/local/include)
++  $ENV{EBROOTVOROPLUSPLUS}/include/voro++)
+ 
+ SET(VORO_LIBRARY_SEARCH_PATH
+-  $ENV{MECHSYS_ROOT}/pkg/voro++-0.4.5/src
+-  $ENV{HOME}/pkg/voro++-0.4.5/src
+-  /usr/lib
+-  /usr/local/lib)
++  $ENV{EBROOTVOROPLUSPLUS}/lib)
+ 
+ FIND_PATH(VORO_VORO_H voro++.hh ${VORO_INCLUDE_SEARCH_PATH})
+ 
+@@ -44,6 +36,9 @@
+ ENDFOREACH(var)
+ 
+ IF(VORO_FOUND)
++    MESSAGE(WARNING "Found Voro++!!")
+     SET(VORO_INCLUDE_DIRS ${VORO_VORO_H})
+     SET(VORO_LIBRARIES ${VORO_VORO})
++ELSE(VORO_FOUND)
++    MESSAGE(WARNING "Couldn't find Voro++!! VORO_H=" ${VORO_VORO_H} "_VORO_LIB=" ${VORO_VORO})
+ ENDIF(VORO_FOUND)

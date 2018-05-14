@@ -1,0 +1,33 @@
+easyblock = 'PerlModule'
+
+name = 'Bio-SamTools'
+version = '1.43'
+versionsuffix = '-Perl-%(perlver)s'
+
+homepage = 'http://search.cpan.org/~lds/Bio-SamTools/'
+description = """This is a Perl interface to the SAMtools sequence alignment interface."""
+
+toolchain = {'name': 'foss', 'version': '2017a'}
+toolchainopts = {'pic': True}
+
+source_urls = ['http://search.cpan.org/CPAN/authors/id/L/LD/LDS']
+sources = [SOURCE_TAR_GZ]
+
+patches = ['%(name)s-%(version)s.patch']
+
+dependencies = [
+    ('Perl', '5.26.0'),
+    ('BioPerl', '1.7.1', versionsuffix),
+    ('SAMtools', '1.5'),
+    ('htslib','1.4.1'),
+    ('bamtools','2.4.1'),
+]
+
+options = {'modulename': 'Bio::DB::Sam'}
+
+sanity_check_paths = {
+    'files': ['bin/%s' % x for x in ['bam2bedgraph', 'bamToGBrowse.pl', 'chrom_sizes.pl', 'genomeCoverageBed.pl']],
+    'dirs': ['lib/perl5/site_perl/%%(perlver)s/x86_64-linux-thread-multi/%s' % x for x in ['auto', 'Bio']],
+}
+
+moduleclass = 'bio'

@@ -1,0 +1,26 @@
+# Built with EasyBuild version 2.9.0 on 2016-11-16_16-01-13
+name = 'Boost'
+version = '1.58.0'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'http://www.boost.org/'
+description = """Boost provides free peer-reviewed portable C++ source libraries."""
+versionsuffix = "-zlib-1.2.11"
+
+toolchain = {'name': 'foss', 'version': '2016a'}
+toolchainopts = {'pic': True, 'usempi': True}
+
+source_urls = [SOURCEFORGE_SOURCE]
+sources = ['%%(namelower)s_%s.tar.gz' % '_'.join(version.split('.'))]
+
+dependencies = [
+    ('bzip2', '1.0.6'),
+    ('zlib', '1.2.11'),
+    ('Python', '2.7.11'),
+]
+
+# also build boost_mpi
+boost_mpi = True
+
+moduleclass = 'devel'
+
